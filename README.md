@@ -27,6 +27,7 @@ npm run lint
 | Name | Required | Purpose |
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | Yes in production | Canonical URLs, sitemap, Open Graph |
+| `NEXT_PUBLIC_ALLOW_INDEXING` | At launch | Set to `true` to let Google index the site; anything else blocks indexing |
 | `NEXT_PUBLIC_GA_ID` | No | Google Analytics 4 ID; analytics off when empty |
 | `ENQUIRY_ENDPOINT` | No | Server-side form relay URL; form shows "call or WhatsApp" when unset |
 | `ENQUIRY_ACCESS_KEY` | No | Key for that relay (server only, never exposed) |

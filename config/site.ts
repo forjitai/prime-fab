@@ -58,6 +58,9 @@ export const site = {
 
   legal: [{ label: "Privacy policy", href: "/privacy-policy" }],
 
+  // Search engines are blocked until this is "true" in production (set at launch).
+  allowIndexing: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true",
+
   analytics: {
     gaId: process.env.NEXT_PUBLIC_GA_ID ?? "", // empty = analytics off
   },

@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   title: { default: site.name, template: `%s | ${site.name}` },
   description: site.description,
   openGraph: { siteName: site.name, locale: "en_IN", type: "website" },
+  robots: site.allowIndexing ? undefined : { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
