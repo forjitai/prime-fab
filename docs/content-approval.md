@@ -31,3 +31,16 @@ Years in business, number of customers/projects, warranty, certifications, testi
 | Products — intro | What PRIME FAB makes… | Needs offerings list |
 | Gallery — intro | Photos of finished jobs and work in progress. | Needs photos |
 | Privacy policy | Plain-language policy based on what the site actually does | Owner should review |
+
+## uPVC windows & doors (confirmed 25 Oct 2026) — text in `content/products.ts`
+
+Confirmed by client: PRIME FAB makes **uPVC windows and doors only**. Site, titles, descriptions and Google business data (HomeAndConstructionBusiness) now say this.
+
+| Item | Proposed text | Please confirm |
+|---|---|---|
+| Windows page | Made to the size of your opening; for new buildings or replacing old frames | Do you do replacements? |
+| Doors page | Made to fit entrances, balconies and other openings | Correct uses? |
+| "Ask us about" (windows) | Styles and opening types · frame colours · glass options · mosquito mesh · timelines and pricing | Do you offer colours, glass choices, mesh? |
+| "Ask us about" (doors) | Styles and opening types · frame colours · glass and panel options · locks and handles · timelines and pricing | Same |
+| "Why uPVC" lines | Doesn't rust or rot, wipe-clean, not damaged by termites | General material facts, not PRIME FAB claims |
+| Installation | Not mentioned anywhere | **Do you install/fit, or supply only?** |

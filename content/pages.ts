@@ -7,13 +7,13 @@ export const about = {
   meta: {
     title: "About PRIME FAB",
     description:
-      "About PRIME FAB, a fabrication business in Yentiganahalli, Karnataka 562123. Call +91 88615 55722 to talk about your job.",
+      "About PRIME FAB, makers of uPVC windows and doors in Yentiganahalli, Karnataka 562123. Call +91 88615 55722 to talk about your job.",
   },
   title: "About PRIME FAB",
-  intro: "A fabrication business in Yentiganahalli, Karnataka.",
+  intro: "uPVC windows and doors, made in Yentiganahalli, Karnataka.",
   // PROPOSED — replace with the owner's own story (when started, who runs it, what jobs you take on).
   story: [
-    "PRIME FAB makes fabricated work to order for customers in and around Yentiganahalli.",
+    "PRIME FAB makes uPVC windows and doors to order for customers in and around Yentiganahalli.",
     "Every job starts with a conversation about what you need, the size and the finish, so you know the price before work begins.",
   ],
   approachTitle: "How we work",
@@ -21,31 +21,31 @@ export const about = {
   approach: [
     { title: "Straight answers", text: "You talk directly to the people doing the work, by phone or WhatsApp." },
     { title: "Price agreed first", text: "You get a quote before anything is made." },
-    { title: "Made to measure", text: "Work is fabricated to your sizes rather than off-the-shelf." },
+    { title: "Made to measure", text: "Windows and doors are made to your opening sizes rather than off-the-shelf." },
   ],
   cta: { title: "Talk to PRIME FAB", text: "Call or WhatsApp to discuss your job." },
 } as const;
 
 export const products = {
   meta: {
-    title: "Products and services",
+    title: "uPVC Windows and Doors",
     description:
-      "Products and services from PRIME FAB, Yentiganahalli, Karnataka. Call +91 88615 55722 or WhatsApp for a quote.",
+      "uPVC windows and uPVC doors from PRIME FAB, Yentiganahalli, Karnataka. Call +91 88615 55722 or WhatsApp for a quote.",
   },
-  title: "Products and services",
-  intro: "What PRIME FAB makes. Tap any item for details, or ask about something not listed.", // PROPOSED
+  title: "uPVC windows and doors",
+  intro: "PRIME FAB makes two things: uPVC windows and uPVC doors, both made to measure.", // PROPOSED
   emptyNotice:
-    "The full list of products and services is being added. In the meantime, call or WhatsApp to ask about any fabrication job.",
+    "The full list of products and services is being added. In the meantime, call or WhatsApp to ask about uPVC windows or doors.",
   cta: { title: "Not sure what you need?", text: "Describe the job and we'll tell you what's possible." },
 } as const;
 
 export const gallery = {
   meta: {
     title: "Gallery",
-    description: "Photos of fabrication work by PRIME FAB, Yentiganahalli, Karnataka.",
+    description: "Photos of uPVC windows and doors made by PRIME FAB, Yentiganahalli, Karnataka.",
   },
   title: "Gallery",
-  intro: "Photos of finished jobs and work in progress.", // PROPOSED
+  intro: "uPVC windows and doors made by PRIME FAB.", // PROPOSED
   // Add photos to public/images/gallery and list them here: { src, alt, caption? }
   items: Array.from({ length: 9 }, (_, i) => ({ alt: `PRIME FAB project photo ${i + 1}` })) as {
     src?: string;

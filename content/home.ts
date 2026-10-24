@@ -7,30 +7,30 @@
 
 export const home = {
   meta: {
-    title: "PRIME FAB | Fabrication in Yentiganahalli, Karnataka",
+    title: "PRIME FAB | uPVC Windows & Doors in Yentiganahalli, Karnataka",
     description:
-      "PRIME FAB is a fabrication business in Yentiganahalli, Karnataka 562123. Call +91 88615 55722 or WhatsApp to discuss your requirement and get a quote.",
+      "PRIME FAB makes uPVC windows and doors to measure in Yentiganahalli, Karnataka 562123. Call +91 88615 55722 or WhatsApp for a quote.",
   },
 
   hero: {
-    heading: "Fabrication work, made to your measurements",          // PROPOSED
+    heading: "uPVC windows and doors, made to your measurements",   // PROPOSED
     intro:
-      "Tell us what you need built. Call, WhatsApp or send the form, and PRIME FAB will get back to you to talk it through and quote.", // PROPOSED
+      "Tell us about your openings. Call, WhatsApp or send the form, and PRIME FAB will get back to you to talk it through and quote.", // PROPOSED
     location: "Yentiganahalli, Karnataka",
     formTitle: "Ask for a quote",
   },
 
   offerings: {
     heading: "What we make",
-    intro: "Choose what you need to see details, or ask us about something not listed.", // PROPOSED
+    intro: "PRIME FAB makes uPVC windows and doors. Tap either one for details.", // PROPOSED
   },
 
   process: {
     heading: "How a job works",                                       // PROPOSED — whole section
     steps: [
-      { title: "Tell us what you need", text: "Call, WhatsApp or use the form. Photos or rough sizes help." },
+      { title: "Tell us what you need", text: "Call, WhatsApp or use the form. Photos or rough sizes of your openings help." },
       { title: "Discuss and quote", text: "We go over the details with you and give you a price before any work starts." },
-      { title: "We make it", text: "Your job is fabricated to the agreed size and finish." },
+      { title: "We make it", text: "Your windows and doors are made to the agreed sizes and finish." },
       { title: "Handover", text: "We hand over the finished work and answer any questions." },
     ],
   },
@@ -47,7 +47,7 @@ export const home = {
   },
 
   cta: {
-    title: "Have a job in mind?",
+    title: "Need new windows or doors?",
     text: "Call or WhatsApp PRIME FAB to talk it through.",
   },
 } as const;

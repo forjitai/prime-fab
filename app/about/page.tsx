@@ -7,7 +7,7 @@ import { ImageFrame } from "@/components/media/ImageFrame";
 import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
-  title: { absolute: `${about.meta.title} | Fabrication in Yentiganahalli` },
+  title: { absolute: `${about.meta.title} | uPVC Windows & Doors, Yentiganahalli` },
   description: about.meta.description,
   alternates: { canonical: "/about" },
   openGraph: { title: about.meta.title, description: about.meta.description, url: "/about" },

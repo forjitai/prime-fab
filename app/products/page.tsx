@@ -8,7 +8,7 @@ import { ProductCard } from "@/components/cards/ProductCard";
 import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
-  title: products.meta.title,
+  title: { absolute: `${products.meta.title} | PRIME FAB` },
   description: products.meta.description,
   alternates: { canonical: "/products" },
   openGraph: { title: products.meta.title, description: products.meta.description, url: "/products" },
@@ -20,7 +20,7 @@ export default function ProductsPage() {
       <PageHero title={products.title} intro={products.intro} crumbs={[{ label: "Products", href: "/products" }]} />
       <Section>
         {site.offerings.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className={`grid gap-6 sm:grid-cols-2 ${site.offerings.length > 2 ? "lg:grid-cols-3" : ""}`}>
             {site.offerings.map((o) => (
               <ProductCard
                 key={o.slug}

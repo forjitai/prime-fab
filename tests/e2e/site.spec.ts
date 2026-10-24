@@ -1,7 +1,7 @@
 import { test, expect, type Page } from "@playwright/test";
 import { site } from "../../config/site";
 
-const PAGES = ["/", "/about", "/products", "/gallery", "/contact", "/privacy-policy"];
+const PAGES = ["/", "/about", "/products", "/products/upvc-windows", "/products/upvc-doors", "/gallery", "/contact", "/privacy-policy"];
 
 /** Collect page errors and failed same-origin requests (Google embeds excluded: unreachable in CI). */
 function watch(page: Page) {
@@ -163,6 +163,10 @@ test("unknown URL shows custom 404", async ({ page }) => {
   const robots = await page.locator('meta[name="robots"]').evaluateAll((m) => m.map((x) => x.getAttribute("content")));
   expect(robots.length).toBeGreaterThan(0);
   for (const c of robots) expect(c).toMatch(/noindex/);
+});
+
+test("unknown product URL is a real 404", async ({ page }) => {
+  expect((await page.goto("/products/aluminium-gates"))?.status()).toBe(404);
 });
 
 test("robots.txt and sitemap.xml are served", async ({ request }) => {

@@ -33,7 +33,7 @@ export default function HomePage() {
       <Section labelledBy="offerings-title">
         <SectionHeading id="offerings-title" title={home.offerings.heading} intro={home.offerings.intro} />
         {site.offerings.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className={`grid gap-6 sm:grid-cols-2 ${site.offerings.length > 2 ? "lg:grid-cols-3" : ""}`}>
             {site.offerings.map((o) => (
               <ProductCard
                 key={o.slug}

@@ -14,10 +14,10 @@ const addressLine = "387X+RM9, Yentiganahalli, Karnataka 562123, India";
 
 export const site = {
   name: "PRIME FAB",
-  // Neutral until offerings are confirmed. Edit once services are known.
-  tagline: "Fabrication you can build on",
+  tagline: "uPVC windows and doors",
+  // Confirmed by client 25 Oct 2026: uPVC windows and doors only.
   description:
-    "PRIME FAB is a fabrication business in Yentiganahalli, Karnataka. Call or WhatsApp to discuss your requirement.",
+    "PRIME FAB makes uPVC windows and doors in Yentiganahalli, Karnataka. Call or WhatsApp to discuss your requirement.",
   // Explicit URL wins; on Vercel, fall back to the project's production domain automatically.
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
@@ -48,18 +48,41 @@ export const site = {
   nav: [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
-    // Product sub-links are added here once offerings are confirmed.
-    { label: "Products", href: "/products", children: [] as { label: string; href: string }[] },
+    {
+      label: "Products",
+      href: "/products",
+      children: [
+        { label: "uPVC windows", href: "/products/upvc-windows" },
+        { label: "uPVC doors", href: "/products/upvc-doors" },
+      ],
+    },
     { label: "Gallery", href: "/gallery" },
     { label: "Contact", href: "/contact" },
   ],
 
   /**
-   * Confirmed products / services. EMPTY until the client confirms them.
-   * Each entry becomes a homepage card, a nav link and a /products/[slug] page.
-   * Example: { slug: "steel-gates", title: "Steel gates", summary: "…", image: "/images/products/steel-gates.webp" }
+   * Confirmed products (client, 25 Oct 2026). Each becomes a homepage card,
+   * a /products/<slug> page. Copy lives in content/products.ts; each slug also needs
+   * a two-line route file at app/products/<slug>/page.tsx (copy an existing one).
+   * Add `image` once photos are supplied, e.g. "/images/products/upvc-windows.webp".
    */
-  offerings: [] as { slug: string; title: string; summary: string; image?: string }[],
+  offerings: [
+    {
+      slug: "upvc-windows",
+      title: "uPVC windows",
+      summary: "Windows made to the size of your openings, for new homes and replacements.",
+      image: undefined,
+    },
+    {
+      slug: "upvc-doors",
+      title: "uPVC doors",
+      summary: "Doors made to measure for your entrances, balconies and other openings.",
+      image: undefined,
+    },
+  ] as { slug: string; title: string; summary: string; image?: string }[],
+
+  // schema.org type for LocalBusiness JSON-LD (business category now confirmed).
+  businessType: "HomeAndConstructionBusiness",
 
   legal: [{ label: "Privacy policy", href: "/privacy-policy" }],
 

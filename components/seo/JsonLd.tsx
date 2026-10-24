@@ -6,14 +6,16 @@ export function JsonLd({ data }: { data: Record<string, unknown> | Record<string
 
 /**
  * Organization + WebSite. Uses only verified details.
- * LocalBusiness is added once the business category is confirmed (Phase 7).
+ * Business category confirmed (uPVC windows & doors) → LocalBusiness subtype.
+ * No opening hours, coordinates, ratings or prices: none supplied.
  */
 export function SiteJsonLd() {
   const org = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": site.businessType,
     "@id": `${site.url}/#organization`,
     name: site.name,
+    description: site.description,
     url: site.url,
     telephone: site.contact.phoneHref.replace("tel:", ""),
     address: {
@@ -24,6 +26,11 @@ export function SiteJsonLd() {
       postalCode: site.address.postalCode,
       addressCountry: site.address.country,
     },
+    hasMap: site.address.directionsHref,
+    makesOffer: site.offerings.map((o) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: o.title, url: `${site.url}/products/${o.slug}` },
+    })),
   };
   const website = {
     "@context": "https://schema.org",
