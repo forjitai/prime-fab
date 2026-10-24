@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { site } from "@/config/site";
 
 /** Only canonical, indexable, BUILT routes. Add each page here as it's completed. */
-const routes = ["/"];
+const routes = ["/", "/about", "/products", "/gallery", "/contact", "/privacy-policy"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((path) => ({

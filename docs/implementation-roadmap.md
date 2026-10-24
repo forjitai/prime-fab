@@ -9,14 +9,14 @@ _Phase 1 · 24 Oct 2026_
 | 1 | Reference audit | Done, approved | — |
 | 2 | Brand & design system | Done (see design-system.md) | Logo still to supply |
 | 3 | Homepage | Built & tested; copy awaiting approval (content-approval.md) | Offerings, photos, WhatsApp number |
-| 4 | Inner pages | Not started | Approved sitemap |
+| 4 | Inner pages | Done: about, products, gallery, contact, privacy, 404. Product detail pages wait for confirmed offerings | Offerings, photos |
 | 5 | Photos & media | Not started | Your photos |
 | 6 | Contact details | Not started | Phone/WhatsApp mismatch (see below) |
 | 7 | SEO | Basics live: metadata, canonical, robots.txt, sitemap.xml, Organization/WebSite JSON-LD | Business category, service area |
 | 8 | Performance & a11y | Not started | — |
 | 9 | Testing (Playwright) | Not started | — |
-| 10 | GitHub | Not started | GitHub access |
-| 11 | Vercel | Not started | Vercel project/team confirmation |
+| 10 | GitHub | Done: forjitai/prime-fab (Vercel) + jeevanforandroid-oss/prime-fab-website (mirror) | — |
+| 11 | Vercel | Live at prime-fab-website.vercel.app, auto-deploys from forjitai/prime-fab main; indexing off until launch | — |
 | 12 | Handover | Not started | — |
 
 ## Audit limitations

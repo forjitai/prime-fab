@@ -21,3 +21,13 @@ _Phase 3 · 24 Oct 2026. All homepage text lives in `content/home.ts`; lines tag
 ## Deliberately NOT on the homepage (no verified info)
 
 Years in business, number of customers/projects, warranty, certifications, testimonials, opening hours, service area. Each can be added as soon as you supply it.
+
+## Inner pages (Phase 4) — text in `content/pages.ts`
+
+| Page | Proposed text | Status |
+|---|---|---|
+| About — story | Two short paragraphs on making work to order and quoting first | **Replace with your own story** (when started, who runs it, main jobs) |
+| About — How we work | Straight answers · Price agreed first · Made to measure | Confirm these are true |
+| Products — intro | What PRIME FAB makes… | Needs offerings list |
+| Gallery — intro | Photos of finished jobs and work in progress. | Needs photos |
+| Privacy policy | Plain-language policy based on what the site actually does | Owner should review |
