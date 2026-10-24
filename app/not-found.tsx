@@ -4,9 +4,9 @@ import { site } from "@/config/site";
 import { Section } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 
+// Next.js adds the noindex robots tag to not-found responses automatically.
 export const metadata: Metadata = {
   title: "Page not found",
-  robots: { index: false, follow: true },
 };
 
 export default function NotFound() {

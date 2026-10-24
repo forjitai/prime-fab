@@ -61,6 +61,7 @@ export function MobileNav() {
                 <Link
                   href={item.href}
                   aria-current={pathname === item.href ? "page" : undefined}
+                  onClick={() => setOpen(false)}
                   className="block py-4 text-2xl font-bold"
                   style={{ fontStretch: "115%" }}
                 >
@@ -70,7 +71,7 @@ export function MobileNav() {
                   <ul className="pb-3 pl-4">
                     {item.children.map((c) => (
                       <li key={c.href}>
-                        <Link href={c.href} className="block py-2 text-white/80">
+                        <Link href={c.href} onClick={() => setOpen(false)} className="block py-2 text-white/80">
                           {c.label}
                         </Link>
                       </li>

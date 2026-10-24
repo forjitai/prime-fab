@@ -10,6 +10,7 @@ npm run dev        # http://localhost:3000
 npm run build      # production build
 npm run start
 npm run lint
+npm run test:e2e   # Playwright: builds, starts and tests every page at phone/tablet/desktop
 ```
 
 ## Where things live
