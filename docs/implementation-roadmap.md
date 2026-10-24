@@ -13,7 +13,7 @@ _Phase 1 · 24 Oct 2026_
 | 5 | Photos & media | Not started | Your photos |
 | 6 | Contact details | Not started | Phone/WhatsApp mismatch (see below) |
 | 7 | SEO | Basics live: metadata, canonical, robots.txt, sitemap.xml, Organization/WebSite JSON-LD | Business category, service area |
-| 8 | Performance & a11y | Not started | — |
+| 8 | Performance & a11y | Done: all pages ≥ 90 mobile, 100 desktop (docs/lighthouse.md) | Re-check after photos |
 | 9 | Testing (Playwright) | Not started | — |
 | 10 | GitHub | Done: forjitai/prime-fab (Vercel) + jeevanforandroid-oss/prime-fab-website (mirror) | — |
 | 11 | Vercel | Live at prime-fab-website.vercel.app, auto-deploys from forjitai/prime-fab main; indexing off until launch | — |
