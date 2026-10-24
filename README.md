@@ -26,7 +26,7 @@ npm run lint
 
 | Name | Required | Purpose |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | Yes in production | Canonical URLs, sitemap, Open Graph |
+| `NEXT_PUBLIC_SITE_URL` | Set once you add a custom domain | Canonical URLs, sitemap, Open Graph. On Vercel it defaults to the project's production domain |
 | `NEXT_PUBLIC_ALLOW_INDEXING` | At launch | Set to `true` to let Google index the site; anything else blocks indexing |
 | `NEXT_PUBLIC_GA_ID` | No | Google Analytics 4 ID; analytics off when empty |
 | `ENQUIRY_ENDPOINT` | No | Server-side form relay URL; form shows "call or WhatsApp" when unset |

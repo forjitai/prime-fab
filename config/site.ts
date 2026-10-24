@@ -18,7 +18,12 @@ export const site = {
   tagline: "Fabrication you can build on",
   description:
     "PRIME FAB is a fabrication business in Yentiganahalli, Karnataka. Call or WhatsApp to discuss your requirement.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  // Explicit URL wins; on Vercel, fall back to the project's production domain automatically.
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "http://localhost:3000"),
 
   contact: {
     phoneDisplay: "+91 88615 55722",
