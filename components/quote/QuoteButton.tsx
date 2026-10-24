@@ -10,18 +10,20 @@ export function QuoteButton({
   children = "Get Best Quote",
   variant = "primary",
   className = "",
+  icon,
 }: {
   product?: string;
   children?: ReactNode;
   variant?: "primary" | "secondary" | "ghost" | "onDark";
   className?: string;
+  icon?: ReactNode;
 }) {
   return (
     <Button
       type="button"
       variant={variant}
       className={className}
-      icon={<FileText aria-hidden size={18} />}
+      icon={icon ?? <FileText aria-hidden size={18} />}
       onClick={() => openQuote(product)}
       data-event="cta_click"
       aria-haspopup="dialog"

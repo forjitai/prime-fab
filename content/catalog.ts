@@ -8,7 +8,11 @@
  *
  * Descriptions explain what each TYPE is (how it opens, where it's used) — they are
  * general facts, not PRIME FAB claims. No prices, specs, brands or warranties until supplied.
- * Add `price` (e.g. "₹ 450 / sq ft") and `images` when the client provides them.
+ * Optional, shown only when supplied by the client:
+ *   price    e.g. "₹ 450 / sq ft"
+ *   images   e.g. ["/images/products/upvc-sliding-window-1.webp", ...] (first = main photo)
+ *   specs    extra rows for the details table, e.g. [["Glass", "5 mm toughened"], ["Track", "2 track"]]
+ *   brochure PDF in /public, e.g. "/brochures/upvc-windows.pdf"
  */
 
 export type CategorySlug = "upvc-windows" | "upvc-doors";
@@ -22,6 +26,8 @@ export type CatalogItem = {
   usedFor: string;
   price?: string;
   images?: string[];
+  specs?: [string, string][];
+  brochure?: string;
   confirmed: boolean;
 };
 

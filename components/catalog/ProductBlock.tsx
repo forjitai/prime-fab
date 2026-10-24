@@ -1,4 +1,4 @@
-import { Phone } from "lucide-react";
+import { Phone, Download, ThumbsUp } from "lucide-react";
 import { site } from "@/config/site";
 import type { CatalogItem } from "@/content/catalog";
 import { ImageFrame } from "@/components/media/ImageFrame";
@@ -13,6 +13,7 @@ export function ProductBlock({ item, priority = false }: { item: CatalogItem; pr
     ["Type", item.name.replace(/^uPVC /, "")],
     ["Opening style", item.openingStyle],
     ["Made to", "Your opening size"],
+    ...(item.specs ?? []),
   ];
 
   return (
@@ -74,8 +75,26 @@ export function ProductBlock({ item, priority = false }: { item: CatalogItem; pr
           <p className="mt-2">
             <span className="font-medium text-heading">Good for:</span> {item.usedFor}
           </p>
+          {item.brochure && (
+            <a href={item.brochure} download className="prose-link mt-4 inline-flex items-center gap-1.5 self-start">
+              <Download aria-hidden size={16} />
+              Download brochure (PDF)
+            </a>
+          )}
         </div>
       </div>
+
+      <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-line bg-section px-5 py-4 sm:px-7">
+        <p className="font-medium text-heading">Interested in this {item.name.replace(/^uPVC /, "").toLowerCase()}?</p>
+        <QuoteButton
+          product={item.name}
+          variant="secondary"
+          className="!min-h-10 !px-4 !py-2 text-sm"
+          icon={<ThumbsUp aria-hidden size={16} />}
+        >
+          Yes, I&apos;m interested
+        </QuoteButton>
+      </footer>
     </article>
   );
 }

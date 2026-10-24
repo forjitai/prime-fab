@@ -35,7 +35,7 @@ test.describe("every page", () => {
       // JSON-LD parses
       for (const s of await page.locator('script[type="application/ld+json"]').allTextContents()) JSON.parse(s);
       // Business details present in footer
-      const footer = page.locator("footer");
+      const footer = page.locator("body > footer");
       await expect(footer).toContainText(site.address.full);
       await expect(footer).toContainText(site.contact.phoneDisplay);
       // Refresh keeps working
@@ -89,7 +89,7 @@ test("mobile menu opens, traps scroll and closes on Escape", async ({ page }) =>
 
 test("footer links all resolve", async ({ page, request }) => {
   await page.goto("/");
-  const hrefs = await page.locator("footer a[href^='/']").evaluateAll((as) => as.map((a) => a.getAttribute("href")!));
+  const hrefs = await page.locator("body > footer a[href^='/']").evaluateAll((as) => as.map((a) => a.getAttribute("href")!));
   expect(hrefs.length).toBeGreaterThanOrEqual(6);
   for (const h of new Set(hrefs)) expect((await request.get(h)).status(), h).toBe(200);
 });
@@ -185,6 +185,27 @@ test("Get Best Quote opens dialog with product pre-selected", async ({ page }) =
   await expect(dlg).toBeHidden();
 });
 
+test("Yes, I'm interested opens the quote dialog for that product", async ({ page }) => {
+  const item = catalog.find((c) => c.category === "upvc-windows")!;
+  await page.goto("/products/upvc-windows");
+  await page.locator(`article#${item.slug}`).getByRole("button", { name: "Yes, I'm interested" }).click();
+  const dlg = page.getByRole("dialog", { name: "Get Best Quote" });
+  await expect(dlg).toContainText(`For: ${item.name}`);
+  await expect(dlg.locator("#quote-type")).toHaveValue(item.name);
+});
+
+test("photos page groups every product with a quote button", async ({ page }) => {
+  await page.goto("/gallery");
+  for (const heading of ["uPVC Windows", "uPVC Doors", "Project photos"])
+    await expect(page.getByRole("heading", { level: 2, name: heading })).toBeVisible();
+  for (const item of catalog) {
+    const tile = page.locator("li", { has: page.getByRole("heading", { level: 3, name: item.name, exact: true }) });
+    await expect(tile).toHaveCount(1);
+    await expect(tile.getByRole("link")).toHaveAttribute("href", `/products/${item.category}#${item.slug}`);
+    await expect(tile.getByRole("button", { name: "Get Quote" })).toBeVisible();
+  }
+});
+
 test("sidebar and quick links jump to the right product", async ({ page }) => {
   const item = catalog[1];
   await page.goto("/");
@@ -231,7 +252,7 @@ test("mobile quick-contact bar has call, WhatsApp and quote", async ({ page }) =
 
 test("top bar and share links", async ({ page }) => {
   await page.goto("/");
-  const share = page.locator("footer").getByRole("link", { name: /Share on/ });
+  const share = page.locator("body > footer").getByRole("link", { name: /Share on/ });
   expect(await share.count()).toBe(4);
   for (const h of await share.evaluateAll((a) => a.map((x) => x.getAttribute("href")!))) expect(h).toMatch(/^https:\/\//);
 });
