@@ -10,7 +10,8 @@ const initial: EnquiryState = { status: "idle" };
 const inputCls =
   "block w-full border border-line bg-card px-4 py-3 text-heading placeholder:text-muted focus:border-primary aria-[invalid=true]:border-error";
 
-export function EnquiryForm({ inquiryTypes = [] }: { inquiryTypes?: string[] }) {
+export function EnquiryForm({ inquiryTypes = [], compact = false }: { inquiryTypes?: string[]; compact?: boolean }) {
+  const cols = compact ? "grid gap-4 sm:grid-cols-2" : "grid gap-5 sm:grid-cols-2";
   const [state, action, pending] = useActionState(submitEnquiry, initial);
 
   if (state.status === "sent") {
@@ -40,7 +41,7 @@ export function EnquiryForm({ inquiryTypes = [] }: { inquiryTypes?: string[] }) 
     ) : null;
 
   return (
-    <form action={action} noValidate className="grid gap-5">
+    <form action={action} noValidate className={compact ? "grid gap-4" : "grid gap-5"}>
       {state.status === "unavailable" && (
         <div role="alert" className="flex gap-3 border-l-4 border-accent bg-section p-4">
           <AlertTriangle aria-hidden className="shrink-0 text-accent-strong" />
@@ -48,7 +49,7 @@ export function EnquiryForm({ inquiryTypes = [] }: { inquiryTypes?: string[] }) 
         </div>
       )}
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className={cols}>
         <div>
           <label htmlFor="enq-name" className="mb-1.5 block font-medium text-heading">Name</label>
           <input {...field("name")} type="text" autoComplete="name" required className={inputCls} />
@@ -61,7 +62,7 @@ export function EnquiryForm({ inquiryTypes = [] }: { inquiryTypes?: string[] }) 
         </div>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className={cols}>
         <div>
           <label htmlFor="enq-email" className="mb-1.5 block font-medium text-heading">
             Email <span className="font-normal text-muted">(optional)</span>
@@ -87,7 +88,7 @@ export function EnquiryForm({ inquiryTypes = [] }: { inquiryTypes?: string[] }) 
 
       <div>
         <label htmlFor="enq-message" className="mb-1.5 block font-medium text-heading">Your requirement</label>
-        <textarea {...field("message")} rows={5} required maxLength={2000} className={inputCls} />
+        <textarea {...field("message")} rows={compact ? 3 : 5} required maxLength={2000} className={inputCls} />
         {err("message")}
       </div>
 
@@ -99,7 +100,7 @@ export function EnquiryForm({ inquiryTypes = [] }: { inquiryTypes?: string[] }) 
       </div>
 
       <div>
-        <Button type="submit" disabled={pending} data-event="form_submit">
+        <Button type="submit" disabled={pending} data-event="form_submit" className={compact ? "w-full" : ""}>
           {pending ? "Sending enquiry…" : "Send enquiry"}
         </Button>
       </div>

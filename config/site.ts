@@ -49,6 +49,13 @@ export const site = {
     { label: "Contact", href: "/contact" },
   ],
 
+  /**
+   * Confirmed products / services. EMPTY until the client confirms them.
+   * Each entry becomes a homepage card, a nav link and a /products/[slug] page.
+   * Example: { slug: "steel-gates", title: "Steel gates", summary: "…", image: "/images/products/steel-gates.webp" }
+   */
+  offerings: [] as { slug: string; title: string; summary: string; image?: string }[],
+
   legal: [{ label: "Privacy policy", href: "/privacy-policy" }],
 
   analytics: {

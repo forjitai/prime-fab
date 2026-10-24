@@ -6,13 +6,13 @@ _Phase 1 · 24 Oct 2026_
 
 | # | Phase | Status | Blocked on |
 |---|---|---|---|
-| 1 | Reference audit | Done, with limitations below | Your approval |
-| 2 | Brand & design system | Not started | Approval; logo decision |
-| 3 | Homepage | Not started | Confirmed offerings; reference screenshots |
+| 1 | Reference audit | Done, approved | — |
+| 2 | Brand & design system | Done (see design-system.md) | Logo still to supply |
+| 3 | Homepage | Built & tested; copy awaiting approval (content-approval.md) | Offerings, photos, WhatsApp number |
 | 4 | Inner pages | Not started | Approved sitemap |
 | 5 | Photos & media | Not started | Your photos |
 | 6 | Contact details | Not started | Phone/WhatsApp mismatch (see below) |
-| 7 | SEO | Planned (seo-plan.md) | Business category, service area |
+| 7 | SEO | Basics live: metadata, canonical, robots.txt, sitemap.xml, Organization/WebSite JSON-LD | Business category, service area |
 | 8 | Performance & a11y | Not started | — |
 | 9 | Testing (Playwright) | Not started | — |
 | 10 | GitHub | Not started | GitHub access |
