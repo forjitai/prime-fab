@@ -3,6 +3,7 @@ import { site } from "@/config/site";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/brand/Logo";
 import { ContactDetails } from "@/components/contact/ContactDetails";
+import { ShareLinks } from "./ShareLinks";
 
 async function currentYear() {
   "use cache";
@@ -17,6 +18,9 @@ export async function Footer() {
         <div className="max-w-sm">
           <Logo onDark />
           <p className="mt-5">{site.description}</p>
+          <div className="mt-8">
+            <ShareLinks />
+          </div>
         </div>
 
         <nav aria-label="Footer">

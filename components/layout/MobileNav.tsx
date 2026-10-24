@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { site } from "@/config/site";
+import { ProductSearch } from "@/components/search/ProductSearch";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -54,6 +55,9 @@ export function MobileNav() {
         hidden={!open}
         className="fixed inset-x-0 bottom-0 top-18 z-40 overflow-y-auto bg-primary px-4 pb-10 pt-6 text-white"
       >
+        <div className="mb-6">
+          <ProductSearch onDark onNavigate={() => setOpen(false)} />
+        </div>
         <nav aria-label="Mobile">
           <ul className="divide-y divide-white/10">
             {site.nav.map((item) => (

@@ -111,8 +111,10 @@ test("call, WhatsApp and directions links are correct", async ({ page }) => {
   expect(href).toContain("https://www.google.com/maps/dir/?api=1&destination=");
   expect(decodeURIComponent(href!)).toContain("387X+RM9");
 
-  // Floating WhatsApp button on every page
-  await expect(page.getByRole("link", { name: /Chat with PRIME FAB on WhatsApp/ })).toBeVisible();
+  // WhatsApp always one tap away: floating button (tablet/desktop) or quick-contact bar (phone)
+  if ((page.viewportSize()?.width ?? 1440) >= 768)
+    await expect(page.getByRole("link", { name: /Chat with PRIME FAB on WhatsApp/ })).toBeVisible();
+  else await expect(page.getByRole("navigation", { name: "Quick contact" }).getByRole("link", { name: "WhatsApp" })).toBeVisible();
 });
 
 test("enquiry form validates and never fakes success", async ({ page }) => {
@@ -189,6 +191,49 @@ test("sidebar and quick links jump to the right product", async ({ page }) => {
   await page.getByRole("navigation", { name: "Popular products" }).getByRole("link", { name: item.name, exact: true }).click();
   await expect(page).toHaveURL(new RegExp(`/products/${item.category}#${item.slug}$`));
   await expect(page.locator(`article#${item.slug}`)).toBeInViewport();
+});
+
+test("product search finds and opens a product", async ({ page }) => {
+  await page.goto("/about");
+  if (isMobile(page)) await page.getByRole("button", { name: "Open menu" }).click();
+  const box = page.getByRole("searchbox", { name: "Search products" }).locator("visible=true").first();
+  await box.fill("french");
+  const hit = page.getByRole("link", { name: /uPVC French Door/ }).locator("visible=true").first();
+  await expect(hit).toBeVisible();
+  await box.press("Enter");
+  await expect(page).toHaveURL(/\/products\/upvc-doors#upvc-french-door$/);
+  await page.goto("/about");
+  if (isMobile(page)) await page.getByRole("button", { name: "Open menu" }).click();
+  const box2 = page.getByRole("searchbox", { name: "Search products" }).locator("visible=true").first();
+  await box2.fill("zzzz");
+  await expect(page.getByText("No match.").locator("visible=true")).toBeVisible();
+});
+
+test("mobile quick-contact bar has call, WhatsApp and quote", async ({ page }) => {
+  const bar = page.getByRole("navigation", { name: "Quick contact" });
+  await page.goto("/");
+  if ((page.viewportSize()?.width ?? 1440) >= 768) {
+    await expect(bar).toBeHidden();
+    return;
+  }
+  await expect(bar.getByRole("link", { name: "Call" })).toHaveAttribute("href", site.contact.phoneHref);
+  await expect(bar.getByRole("link", { name: "WhatsApp" })).toHaveAttribute("href", site.contact.whatsappHref);
+  await bar.getByRole("button", { name: "Get Quote" }).click();
+  await expect(page.getByRole("dialog", { name: "Get Best Quote" })).toBeVisible();
+  // Bar must not cover the footer's last line
+  await page.keyboard.press("Escape");
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  const copy = page.getByText(/All rights reserved/);
+  const cb = await copy.boundingBox();
+  const bb = await bar.boundingBox();
+  expect(cb!.y + cb!.height).toBeLessThanOrEqual(bb!.y + 1);
+});
+
+test("top bar and share links", async ({ page }) => {
+  await page.goto("/");
+  const share = page.locator("footer").getByRole("link", { name: /Share on/ });
+  expect(await share.count()).toBe(4);
+  for (const h of await share.evaluateAll((a) => a.map((x) => x.getAttribute("href")!))) expect(h).toMatch(/^https:\/\//);
 });
 
 test("skip link is first keyboard stop and moves focus to main", async ({ page }) => {
