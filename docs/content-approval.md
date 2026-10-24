@@ -44,3 +44,14 @@ Confirmed by client: PRIME FAB makes **uPVC windows and doors only**. Site, titl
 | "Ask us about" (doors) | Styles and opening types · frame colours · glass and panel options · locks and handles · timelines and pricing | Same |
 | "Why uPVC" lines | Doesn't rust or rot, wipe-clean, not damaged by termites | General material facts, not PRIME FAB claims |
 | Installation | Not mentioned anywhere | **Do you install/fit, or supply only?** |
+
+## Catalogue layout (25 Oct 2026) — reference changed to upvcalphawindows.com
+
+Structure now follows the reference: welcome + business profile, popular-product strip, product range grid, category pages with sidebar and one block per type (photos, price, details table, Get Best Quote, Request callback), enquiry form, photos, site map. Text and photos are NOT copied from the reference; its repeated city "Suppliers in …" sections were deliberately left out (spam risk).
+
+**To confirm — `content/catalog.ts`:** 12 common types listed, all `confirmed: false`.
+Windows: sliding, casement, fixed, tilt & turn, top hung, ventilator, sliding with mesh.
+Doors: sliding, casement, French, slide & fold, mosquito mesh.
+Delete any you don't make; add any missing.
+
+**Optional — shown only when supplied:** price per sq ft per type · photos per type · GST no. · year established · nature of business · contact person (`config/site.ts → profile`).

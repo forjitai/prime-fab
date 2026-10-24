@@ -52,39 +52,40 @@ export const site = {
       label: "Products",
       href: "/products",
       children: [
-        { label: "uPVC windows", href: "/products/upvc-windows" },
-        { label: "uPVC doors", href: "/products/upvc-doors" },
+        { label: "uPVC Windows", href: "/products/upvc-windows" },
+        { label: "uPVC Doors", href: "/products/upvc-doors" },
       ],
     },
-    { label: "Gallery", href: "/gallery" },
+    { label: "Photos", href: "/gallery" },
     { label: "Contact", href: "/contact" },
   ],
 
   /**
-   * Confirmed products (client, 25 Oct 2026). Each becomes a homepage card,
-   * a /products/<slug> page. Copy lives in content/products.ts; each slug also needs
-   * a two-line route file at app/products/<slug>/page.tsx (copy an existing one).
-   * Add `image` once photos are supplied, e.g. "/images/products/upvc-windows.webp".
+   * Product categories (client confirmed uPVC windows & doors, 25 Oct 2026).
+   * The individual window/door types live in content/catalog.ts.
    */
   offerings: [
-    {
-      slug: "upvc-windows",
-      title: "uPVC windows",
-      summary: "Windows made to the size of your openings, for new homes and replacements.",
-      image: undefined,
-    },
-    {
-      slug: "upvc-doors",
-      title: "uPVC doors",
-      summary: "Doors made to measure for your entrances, balconies and other openings.",
-      image: undefined,
-    },
+    { slug: "upvc-windows", title: "uPVC Windows", summary: "Sliding, casement, fixed, tilt and turn, top hung, ventilators and mesh windows.", image: undefined },
+    { slug: "upvc-doors", title: "uPVC Doors", summary: "Sliding, casement, French, slide and fold and mosquito mesh doors.", image: undefined },
   ] as { slug: string; title: string; summary: string; image?: string }[],
+
+  /**
+   * Business profile box (homepage, About). Leave null to hide a row — never guess.
+   */
+  profile: {
+    natureOfBusiness: null as string | null, // e.g. "Manufacturer", "Manufacturer and installer"
+    established: null as string | null, // e.g. "2019"
+    gst: null as string | null, // e.g. "29XXXXX0000X1ZX"
+    contactPerson: null as string | null, // e.g. "Name (Owner)"
+  },
 
   // schema.org type for LocalBusiness JSON-LD (business category now confirmed).
   businessType: "HomeAndConstructionBusiness",
 
-  legal: [{ label: "Privacy policy", href: "/privacy-policy" }],
+  legal: [
+    { label: "Site map", href: "/site-map" },
+    { label: "Privacy policy", href: "/privacy-policy" },
+  ],
 
   // Search engines are blocked until this is "true" in production (set at launch).
   allowIndexing: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true",

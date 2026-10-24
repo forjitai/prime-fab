@@ -1,9 +1,7 @@
-import { ProductDetail, productMetadata } from "@/components/products/ProductDetail";
+import { CategoryPage, categoryMetadata } from "@/components/catalog/CategoryPage";
 
-const SLUG = "upvc-windows";
-
-export const metadata = productMetadata(SLUG);
+export const metadata = categoryMetadata("upvc-windows");
 
 export default function Page() {
-  return <ProductDetail slug={SLUG} />;
+  return <CategoryPage slug="upvc-windows" />;
 }

@@ -9,6 +9,7 @@ const routes = [
   "/products",
   ...site.offerings.map((o) => `/products/${o.slug}`),
   "/gallery",
+  "/site-map",
   "/contact",
   "/privacy-policy",
 ];

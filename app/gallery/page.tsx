@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
   return (
     <>
-      <PageHero title={gallery.title} intro={gallery.intro} crumbs={[{ label: "Gallery", href: "/gallery" }]} />
+      <PageHero title={gallery.title} intro={gallery.intro} crumbs={[{ label: "Photos", href: "/gallery" }]} />
       <Section>
         <Gallery items={gallery.items} />
       </Section>

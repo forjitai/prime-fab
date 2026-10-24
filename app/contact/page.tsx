@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { site } from "@/config/site";
 import { contact } from "@/content/pages";
+import { catalog } from "@/content/catalog";
 import { PageHero } from "@/components/sections/PageHero";
 import { Section } from "@/components/ui/Container";
 import { ContactDetails } from "@/components/contact/ContactDetails";
@@ -28,7 +29,7 @@ export default function ContactPage() {
           </div>
           <div className="border border-line bg-card p-6 sm:p-8">
             <h2 className="t-h3 mb-6 text-2xl">{contact.formTitle}</h2>
-            <EnquiryForm inquiryTypes={site.offerings.map((o) => o.title)} />
+            <EnquiryForm idPrefix="contact" inquiryTypes={catalog.map((c) => c.name)} />
           </div>
         </div>
       </Section>

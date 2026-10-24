@@ -6,6 +6,7 @@ import { site } from "@/config/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/contact/WhatsAppButton";
+import { QuoteDialog } from "@/components/quote/QuoteDialog";
 
 // Archivo variable (weight 100–900, width 62–125%), self-hosted. SIL Open Font License — see app/fonts.
 const archivo = localFont({
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </main>
         <Footer />
         <WhatsAppButton />
+        <QuoteDialog />
       </body>
     </html>
   );

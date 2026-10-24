@@ -10,7 +10,19 @@ const initial: EnquiryState = { status: "idle" };
 const inputCls =
   "block w-full border border-line bg-card px-4 py-3 text-heading placeholder:text-muted focus:border-primary aria-[invalid=true]:border-error";
 
-export function EnquiryForm({ inquiryTypes = [], compact = false }: { inquiryTypes?: string[]; compact?: boolean }) {
+export function EnquiryForm({
+  inquiryTypes = [],
+  compact = false,
+  idPrefix = "enq",
+  defaultType = "",
+}: {
+  inquiryTypes?: string[];
+  compact?: boolean;
+  /** Unique per form on a page, so label/input ids don't collide. */
+  idPrefix?: string;
+  /** Pre-selects "Enquiry about" (e.g. from a product's Get Best Quote button). */
+  defaultType?: string;
+}) {
   const cols = compact ? "grid gap-4 sm:grid-cols-2" : "grid gap-5 sm:grid-cols-2";
   const [state, action, pending] = useActionState(submitEnquiry, initial);
 
@@ -27,15 +39,15 @@ export function EnquiryForm({ inquiryTypes = [], compact = false }: { inquiryTyp
   const errors = state.status === "invalid" ? state.errors : {};
 
   const field = (name: EnquiryField) => ({
-    id: `enq-${name}`,
+    id: `${idPrefix}-${name}`,
     name,
-    defaultValue: values?.[name] ?? "",
+    defaultValue: values?.[name] ?? (name === "type" ? defaultType : ""),
     "aria-invalid": errors[name] ? true : undefined,
-    "aria-describedby": errors[name] ? `enq-${name}-err` : undefined,
+    "aria-describedby": errors[name] ? `${idPrefix}-${name}-err` : undefined,
   });
   const err = (name: EnquiryField) =>
     errors[name] ? (
-      <p id={`enq-${name}-err`} className="mt-1.5 text-sm text-error">
+      <p id={`${idPrefix}-${name}-err`} className="mt-1.5 text-sm text-error">
         {errors[name]}
       </p>
     ) : null;
@@ -51,12 +63,12 @@ export function EnquiryForm({ inquiryTypes = [], compact = false }: { inquiryTyp
 
       <div className={cols}>
         <div>
-          <label htmlFor="enq-name" className="mb-1.5 block font-medium text-heading">Name</label>
+          <label htmlFor={`${idPrefix}-name`} className="mb-1.5 block font-medium text-heading">Name</label>
           <input {...field("name")} type="text" autoComplete="name" required className={inputCls} />
           {err("name")}
         </div>
         <div>
-          <label htmlFor="enq-phone" className="mb-1.5 block font-medium text-heading">Mobile number</label>
+          <label htmlFor={`${idPrefix}-phone`} className="mb-1.5 block font-medium text-heading">Mobile number</label>
           <input {...field("phone")} type="tel" inputMode="tel" autoComplete="tel" required className={inputCls} />
           {err("phone")}
         </div>
@@ -64,14 +76,14 @@ export function EnquiryForm({ inquiryTypes = [], compact = false }: { inquiryTyp
 
       <div className={cols}>
         <div>
-          <label htmlFor="enq-email" className="mb-1.5 block font-medium text-heading">
+          <label htmlFor={`${idPrefix}-email`} className="mb-1.5 block font-medium text-heading">
             Email <span className="font-normal text-muted">(optional)</span>
           </label>
           <input {...field("email")} type="email" autoComplete="email" className={inputCls} />
           {err("email")}
         </div>
         <div>
-          <label htmlFor="enq-type" className="mb-1.5 block font-medium text-heading">Enquiry about</label>
+          <label htmlFor={`${idPrefix}-type`} className="mb-1.5 block font-medium text-heading">Enquiry about</label>
           {inquiryTypes.length > 0 ? (
             <select {...field("type")} className={inputCls}>
               <option value="">Choose one</option>
@@ -87,7 +99,7 @@ export function EnquiryForm({ inquiryTypes = [], compact = false }: { inquiryTyp
       </div>
 
       <div>
-        <label htmlFor="enq-message" className="mb-1.5 block font-medium text-heading">Your requirement</label>
+        <label htmlFor={`${idPrefix}-message`} className="mb-1.5 block font-medium text-heading">Your requirement</label>
         <textarea {...field("message")} rows={compact ? 3 : 5} required maxLength={2000} className={inputCls} />
         {err("message")}
       </div>

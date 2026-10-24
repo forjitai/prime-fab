@@ -1,7 +1,8 @@
 import { test, expect, type Page } from "@playwright/test";
 import { site } from "../../config/site";
+import { catalog } from "../../content/catalog";
 
-const PAGES = ["/", "/about", "/products", "/products/upvc-windows", "/products/upvc-doors", "/gallery", "/contact", "/privacy-policy"];
+const PAGES = ["/", "/about", "/products", "/products/upvc-windows", "/products/upvc-doors", "/gallery", "/contact", "/site-map", "/privacy-policy"];
 
 /** Collect page errors and failed same-origin requests (Google embeds excluded: unreachable in CI). */
 function watch(page: Page) {
@@ -126,8 +127,8 @@ test("enquiry form validates and never fakes success", async ({ page }) => {
   await form.getByLabel(/Email/).fill("not-an-email");
   await form.getByLabel("Your requirement").fill("Need a quote for a job");
   await form.getByRole("button", { name: "Send enquiry" }).click();
-  await expect(form.locator("#enq-phone")).toHaveAttribute("aria-invalid", "true");
-  await expect(form.locator("#enq-email")).toHaveAttribute("aria-invalid", "true");
+  await expect(form.locator("#contact-phone")).toHaveAttribute("aria-invalid", "true");
+  await expect(form.locator("#contact-email")).toHaveAttribute("aria-invalid", "true");
   await expect(form.getByLabel("Name")).toHaveValue("Test Customer"); // values kept
 
   await form.getByLabel("Mobile number").fill("98765 43210");
@@ -138,11 +139,56 @@ test("enquiry form validates and never fakes success", async ({ page }) => {
   await expect(page.getByText("Enquiry sent.")).toHaveCount(0);
 });
 
-test("homepage hero form is above the fold on desktop", async ({ page }) => {
-  test.skip(isMobile(page), "desktop only");
+test("homepage shows business profile and quick links", async ({ page }) => {
   await page.goto("/");
-  const box = await page.locator("#enquiry button[type=submit]").boundingBox();
-  expect(box!.y + box!.height).toBeLessThan(900);
+  await expect(page.locator("h1")).toHaveText("Welcome to PRIME FAB");
+  await expect(page.getByRole("heading", { name: "Business profile" })).toBeVisible();
+  await expect(page.locator("dl")).toContainText("uPVC windows and doors");
+  // Unverified profile fields must stay hidden until supplied
+  if (!site.profile.gst) await expect(page.locator("dl")).not.toContainText("GST");
+  const quick = page.getByRole("navigation", { name: "Popular products" }).getByRole("link");
+  expect(await quick.count()).toBe(8);
+});
+
+test("every catalogue item has a block with quote button and working anchor", async ({ page }) => {
+  for (const cat of ["upvc-windows", "upvc-doors"]) {
+    await page.goto(`/products/${cat}`);
+    for (const item of catalog.filter((c) => c.category === cat)) {
+      const block = page.locator(`article#${item.slug}`);
+      await expect(block).toHaveCount(1);
+      await expect(block.getByRole("heading", { level: 2 })).toHaveText(item.name);
+      await expect(block.getByRole("button", { name: "Get Best Quote" })).toBeVisible();
+      await expect(block.getByRole("link", { name: "Request callback" })).toHaveAttribute("href", site.contact.phoneHref);
+      // No invented price: shows "Price on request" unless a price is set
+      await expect(block).toContainText(item.price ? item.price : "Price on request");
+    }
+  }
+});
+
+test("Get Best Quote opens dialog with product pre-selected", async ({ page }) => {
+  const item = catalog.find((c) => c.category === "upvc-doors")!;
+  await page.goto(`/products/upvc-doors`);
+  await page.locator(`article#${item.slug}`).getByRole("button", { name: "Get Best Quote" }).click();
+  const dlg = page.getByRole("dialog", { name: "Get Best Quote" });
+  await expect(dlg).toBeVisible();
+  await expect(dlg).toContainText(`For: ${item.name}`);
+  await expect(dlg.locator("#quote-type")).toHaveValue(item.name);
+  // Submitting without backend is honest
+  await dlg.getByLabel("Name").fill("Test");
+  await dlg.getByLabel("Mobile number").fill("9876543210");
+  await dlg.getByLabel("Your requirement").fill("Need 3 of these for my house");
+  await dlg.getByRole("button", { name: "Send enquiry" }).click();
+  await expect(dlg.getByRole("alert")).toContainText("call or WhatsApp");
+  await dlg.getByRole("button", { name: "Close" }).click();
+  await expect(dlg).toBeHidden();
+});
+
+test("sidebar and quick links jump to the right product", async ({ page }) => {
+  const item = catalog[1];
+  await page.goto("/");
+  await page.getByRole("navigation", { name: "Popular products" }).getByRole("link", { name: item.name, exact: true }).click();
+  await expect(page).toHaveURL(new RegExp(`/products/${item.category}#${item.slug}$`));
+  await expect(page.locator(`article#${item.slug}`)).toBeInViewport();
 });
 
 test("skip link is first keyboard stop and moves focus to main", async ({ page }) => {

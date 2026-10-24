@@ -3,47 +3,52 @@
  *
  * Lines tagged PROPOSED are wording written for PRIME FAB that the client has
  * NOT yet confirmed. Replace or approve each before launch (see docs/content-approval.md).
+ * Layout follows the client's reference (upvcalphawindows.com): welcome + business
+ * profile, quick links, product range, about, enquiry form, photos, contact.
  */
 
 export const home = {
   meta: {
     title: "PRIME FAB | uPVC Windows & Doors in Yentiganahalli, Karnataka",
     description:
-      "PRIME FAB makes uPVC windows and doors to measure in Yentiganahalli, Karnataka 562123. Call +91 88615 55722 or WhatsApp for a quote.",
+      "PRIME FAB makes uPVC windows and doors to measure in Yentiganahalli, Karnataka 562123: sliding, casement, French, mesh and more. Call +91 88615 55722 for a quote.",
   },
 
   hero: {
-    heading: "uPVC windows and doors, made to your measurements",   // PROPOSED
+    heading: "Welcome to PRIME FAB",
     intro:
-      "Tell us about your openings. Call, WhatsApp or send the form, and PRIME FAB will get back to you to talk it through and quote.", // PROPOSED
+      "uPVC windows and doors made to the size of your openings. Tell us what you need and get a quote by phone or WhatsApp.", // PROPOSED
     location: "Yentiganahalli, Karnataka",
-    formTitle: "Ask for a quote",
+    profileTitle: "Business profile",
   },
 
-  offerings: {
-    heading: "What we make",
-    intro: "PRIME FAB makes uPVC windows and doors. Tap either one for details.", // PROPOSED
+  quickLinksTitle: "Popular products",
+
+  range: {
+    heading: "Our product range",
+    intro: "Tap a type to see details, or ask for a quote straight away.", // PROPOSED
   },
 
-  process: {
-    heading: "How a job works",                                       // PROPOSED — whole section
-    steps: [
-      { title: "Tell us what you need", text: "Call, WhatsApp or use the form. Photos or rough sizes of your openings help." },
-      { title: "Discuss and quote", text: "We go over the details with you and give you a price before any work starts." },
-      { title: "We make it", text: "Your windows and doors are made to the agreed sizes and finish." },
-      { title: "Handover", text: "We hand over the finished work and answer any questions." },
-    ],
+  about: {
+    heading: "About PRIME FAB",
+    // PROPOSED — replace with the owner's own words.
+    text: "PRIME FAB makes uPVC windows and doors to order for homes and buildings in and around Yentiganahalli. Every job starts with your opening sizes and what you need, and you get a price before anything is made.",
+    more: "More about us",
+  },
+
+  enquiry: {
+    heading: "Tell us what you are looking for",
+    intro: "Fill in your requirement and we'll call you back with a quote.",
   },
 
   gallery: {
-    heading: "Recent work",
-    intro: "A few jobs from the workshop.",                           // PROPOSED
+    heading: "Photo gallery",
     cta: "See all photos",
   },
 
   findUs: {
-    heading: "Visit or call",
-    intro: "Find PRIME FAB using the address below, or call ahead and we'll guide you in.", // PROPOSED
+    heading: "Contact us",
+    intro: "Call or WhatsApp for the quickest reply, or visit using the directions below.", // PROPOSED
   },
 
   cta: {

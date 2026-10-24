@@ -32,8 +32,8 @@ export const products = {
     description:
       "uPVC windows and uPVC doors from PRIME FAB, Yentiganahalli, Karnataka. Call +91 88615 55722 or WhatsApp for a quote.",
   },
-  title: "uPVC windows and doors",
-  intro: "PRIME FAB makes two things: uPVC windows and uPVC doors, both made to measure.", // PROPOSED
+  title: "Products & Services",
+  intro: "uPVC windows and uPVC doors, made to measure. Pick a type for details or ask for a quote.", // PROPOSED
   emptyNotice:
     "The full list of products and services is being added. In the meantime, call or WhatsApp to ask about uPVC windows or doors.",
   cta: { title: "Not sure what you need?", text: "Describe the job and we'll tell you what's possible." },
@@ -41,10 +41,10 @@ export const products = {
 
 export const gallery = {
   meta: {
-    title: "Gallery",
+    title: "Photos",
     description: "Photos of uPVC windows and doors made by PRIME FAB, Yentiganahalli, Karnataka.",
   },
-  title: "Gallery",
+  title: "Photo gallery",
   intro: "uPVC windows and doors made by PRIME FAB.", // PROPOSED
   // Add photos to public/images/gallery and list them here: { src, alt, caption? }
   items: Array.from({ length: 9 }, (_, i) => ({ alt: `PRIME FAB project photo ${i + 1}` })) as {
