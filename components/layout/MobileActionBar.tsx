@@ -21,7 +21,7 @@ export function MobileActionBar() {
         target="_blank"
         rel="noopener noreferrer"
         data-event="whatsapp_click"
-        className={`${cell} text-[#128C7E]`}
+        className={`${cell} text-[#0b6e63]`}
       >
         <MessageCircle aria-hidden size={20} />
         WhatsApp

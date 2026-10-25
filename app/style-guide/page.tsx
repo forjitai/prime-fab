@@ -18,10 +18,10 @@ export const metadata: Metadata = {
 };
 
 const swatches = [
-  ["--color-primary", "Primary · ink navy"],
-  ["--color-secondary", "Secondary · steel"],
-  ["--color-accent", "Accent · weld amber"],
-  ["--color-section", "Section background"],
+  ["--color-primary", "Primary · logo green"],
+  ["--color-secondary", "Secondary · muted green"],
+  ["--color-accent", "Accent · logo gold"],
+  ["--color-section", "Section · sandstone"],
   ["--color-heading", "Headings"],
   ["--color-body", "Body text"],
   ["--color-border", "Borders"],
@@ -42,7 +42,7 @@ export default function StyleGuidePage() {
       </Section>
 
       <Section labelledBy="sg-colour">
-        <SectionHeading id="sg-colour" title="Colour" intro="Navy carries the brand, amber is reserved for actions so calls to action are always the easiest thing to find." />
+        <SectionHeading id="sg-colour" title="Colour" intro="Colours come from the PRIME FAB logo: green carries the brand, gold is reserved for actions, sandstone warms the backgrounds." />
         <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           {swatches.map(([v, label]) => (
             <li key={v}>
@@ -66,7 +66,7 @@ export default function StyleGuidePage() {
       </Section>
 
       <Section labelledBy="sg-buttons">
-        <SectionHeading id="sg-buttons" title="Buttons" intro="Primary actions get the chamfered amber plate; secondary actions are outlined." />
+        <SectionHeading id="sg-buttons" title="Buttons" intro="Primary actions get the chamfered gold plate; secondary actions are outlined." />
         <div className="flex flex-wrap gap-4">
           <ButtonLink href={site.contact.phoneHref} icon={<Phone aria-hidden size={18} />}>Call now</ButtonLink>
           <ButtonLink href="/contact" variant="secondary">Get a quote</ButtonLink>

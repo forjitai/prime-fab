@@ -7,8 +7,8 @@ import { MobileNav } from "./MobileNav";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-page">
-      <Container className="flex h-18 items-center justify-between gap-4">
+    <header className="sticky top-0 z-40 border-b border-line bg-header">
+      <Container className="flex h-20 items-center justify-between gap-4">
         <Logo />
         <DesktopNav />
         <div className="flex items-center gap-2">

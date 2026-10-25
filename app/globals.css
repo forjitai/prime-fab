@@ -5,30 +5,31 @@
    Every component reads these variables.
    ========================================================= */
 :root {
-  /* Brand */
-  --color-primary: #14213d;        /* ink navy — headers, footer, primary surfaces */
-  --color-primary-hover: #0d172c;
-  --color-secondary: #4a5a6b;      /* steel grey — secondary text, icons */
-  --color-accent: #f2a93b;         /* weld amber — calls to action */
-  --color-accent-strong: #e09520;  /* amber hover */
-  --color-on-accent: #14213d;      /* text on amber buttons */
+  /* Brand — taken from the PRIME FAB logo (green frame, gold glass, sandstone) */
+  --color-primary: #1b4d33;        /* logo green — top bar, hero, footer, secondary buttons */
+  --color-primary-hover: #143b27;
+  --color-secondary: #4f6b5a;      /* muted green — icons, secondary text */
+  --color-accent: #d29a45;         /* logo gold — calls to action */
+  --color-accent-strong: #bf8432;  /* gold hover */
+  --color-on-accent: #143b27;      /* text on gold buttons */
   --color-on-primary: #ffffff;
 
   /* Surfaces */
-  --color-page: #ffffff;
-  --color-section: #f3f5f8;        /* alternate section background */
-  --color-section-dark: #14213d;
+  --color-page: #fcf9f4;           /* warm off-white */
+  --color-section: #f3eadc;        /* sandstone — alternate sections */
+  --color-section-dark: #1b4d33;
   --color-card: #ffffff;
+  --color-header: #f4ece0;         /* sandstone header, like the logo background */
 
   /* Text */
-  --color-heading: #14213d;
-  --color-body: #3a4656;
-  --color-muted: #6b7786;
+  --color-heading: #1b4d33;
+  --color-body: #3b463f;
+  --color-muted: #5f6359;
 
   /* Lines & links */
-  --color-border: #d9dee4;
-  --color-link: #1f4fa3;
-  --color-link-hover: #14213d;
+  --color-border: #e2d6c3;
+  --color-link: #1d6b42;
+  --color-link-hover: #143b27;
   --color-focus: #1f6feb;
 
   /* Status */
@@ -52,6 +53,7 @@
   --color-section: var(--color-section);
   --color-section-dark: var(--color-section-dark);
   --color-card: var(--color-card);
+  --color-header: var(--color-header);
   --color-heading: var(--color-heading);
   --color-body: var(--color-body);
   --color-muted: var(--color-muted);

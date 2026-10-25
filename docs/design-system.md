@@ -1,5 +1,7 @@
 # PRIME FAB Design System
 
+> **Updated 25 Oct 2026:** colours now come from the client's logo — green `#1b4d33`, gold `#d29a45`, sandstone `#f3eadc` / `#f4ece0`. Logo mark traced to `public/logo-mark.svg` from `brand/logo-original.jpg` (`brand/trace-logo.py`). Replace with the designer's original vector file when available.
+
 _Phase 2 · 24 Oct 2026 · Live preview at `/style-guide` (noindex, not in sitemap)_
 
 ## Idea

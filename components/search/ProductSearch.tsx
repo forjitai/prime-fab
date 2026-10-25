@@ -61,7 +61,7 @@ export function ProductSearch({ onDark = false, onNavigate }: { onDark?: boolean
           value={q}
           placeholder="Search windows, doors…"
           autoComplete="off"
-          aria-controls={listId}
+          aria-controls={open && q.trim() ? listId : undefined}
           onChange={(e) => {
             setQ(e.target.value);
             setOpen(true);

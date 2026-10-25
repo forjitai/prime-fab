@@ -75,7 +75,7 @@ export const site = {
    * Business profile box (homepage, About). Leave null to hide a row — never guess.
    */
   profile: {
-    natureOfBusiness: null as string | null, // e.g. "Manufacturer", "Manufacturer and installer"
+    natureOfBusiness: "Manufacturer" as string | null, // from client logo: "uPVC Windows & Doors Manufacturing"
     established: null as string | null, // e.g. "2019"
     gst: null as string | null, // e.g. "29XXXXX0000X1ZX"
     contactPerson: null as string | null, // e.g. "Name (Owner)"
