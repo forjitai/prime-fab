@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, MapPin, Phone, MessageCircle } from "lucide-react";
+import { site } from "@/config/site";
+import { QuoteButton } from "@/components/quote/QuoteButton";
 import { categories, itemsIn, type CategorySlug } from "@/content/catalog";
 
 /** "Products & Services" category tree. Sticky on desktop; collapsible on phones. */
@@ -39,10 +41,37 @@ export function CatalogSidebar({ current }: { current?: CategorySlug }) {
         </nav>
       </details>
       <aside className="hidden lg:block">
-        <nav aria-label="Products" className="sticky top-24 border border-line bg-card p-6">
-          <h2 className="t-h3 mb-5 border-b-2 border-accent pb-3">Products &amp; Services</h2>
-          {tree}
-        </nav>
+        <div className="grid h-full content-start gap-6">
+          <nav aria-label="Products" className="border border-line bg-card p-6">
+            <h2 className="t-h3 mb-5 border-b-2 border-accent pb-3">Products &amp; Services</h2>
+            {tree}
+          </nav>
+          <section aria-labelledby="sidebar-contact" className="sticky top-24 border border-line bg-primary p-6 text-white/80">
+            <h2 id="sidebar-contact" className="t-h3 mb-4 !text-white">
+              Contact {site.name}
+            </h2>
+            {site.profile.contactPerson && <p className="mb-3 font-semibold text-white">{site.profile.contactPerson}</p>}
+            <p className="flex gap-2 text-sm">
+              <MapPin aria-hidden size={16} className="mt-0.5 shrink-0 text-accent" />
+              {site.address.full}
+            </p>
+            <a href={site.contact.phoneHref} data-event="phone_click" className="mt-3 flex items-center gap-2 font-semibold text-white hover:underline">
+              <Phone aria-hidden size={16} className="text-accent" />
+              {site.contact.phoneDisplay}
+            </a>
+            <a
+              href={site.contact.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-event="whatsapp_click"
+              className="mt-2 flex items-center gap-2 hover:text-white hover:underline"
+            >
+              <MessageCircle aria-hidden size={16} className="text-accent" />
+              WhatsApp us
+            </a>
+            <QuoteButton className="mt-5 w-full">Get Best Quote</QuoteButton>
+          </section>
+        </div>
       </aside>
     </>
   );

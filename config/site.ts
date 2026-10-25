@@ -77,6 +77,10 @@ export const site = {
     established: null as string | null, // e.g. "2019"
     gst: null as string | null, // e.g. "29XXXXX0000X1ZX"
     contactPerson: null as string | null, // e.g. "Name (Owner)"
+    legalStatus: null as string | null, // e.g. "Proprietorship", "Partnership"
+    teamSize: null as string | null, // e.g. "10 to 15 people"
+    serviceArea: null as string | null, // e.g. "Bengaluru Rural and Bengaluru Urban"
+    paymentModes: null as string | null, // e.g. "Cash, UPI, bank transfer"
   },
 
   // schema.org type for LocalBusiness JSON-LD (business category now confirmed).

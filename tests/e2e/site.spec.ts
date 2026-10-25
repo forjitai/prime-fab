@@ -257,6 +257,30 @@ test("top bar and share links", async ({ page }) => {
   for (const h of await share.evaluateAll((a) => a.map((x) => x.getAttribute("href")!))) expect(h).toMatch(/^https:\/\//);
 });
 
+test("about page shows company profile and enquiry form, hides empty sections", async ({ page }) => {
+  await page.goto("/about");
+  const table = page.getByRole("table", { name: /company profile/i });
+  await expect(table).toContainText(site.name);
+  await expect(table).toContainText(site.address.full);
+  await expect(table).toContainText(site.contact.phoneDisplay);
+  // Unverified rows must not appear
+  for (const [label, value] of [["GST no.", site.profile.gst], ["Established", site.profile.established], ["Team size", site.profile.teamSize]] as const)
+    if (!value) await expect(table.getByRole("rowheader", { name: label })).toHaveCount(0);
+  // Optional sections hidden while empty
+  for (const h of ["Our team", "Quality", "Why choose us", "Our workshop and facilities", "Some of our clients"])
+    await expect(page.getByRole("heading", { level: 2, name: h, exact: true })).toHaveCount(0);
+  await expect(page.locator("#about-name")).toBeVisible();
+});
+
+test("product sidebar has a contact box on desktop", async ({ page }) => {
+  test.skip(isMobile(page), "sidebar is desktop only");
+  await page.goto("/products/upvc-windows");
+  const box = page.getByRole("region", { name: `Contact ${site.name}` });
+  await expect(box.getByRole("link", { name: site.contact.phoneDisplay })).toHaveAttribute("href", site.contact.phoneHref);
+  await box.getByRole("button", { name: "Get Best Quote" }).click();
+  await expect(page.getByRole("dialog", { name: "Get Best Quote" })).toBeVisible();
+});
+
 test("skip link is first keyboard stop and moves focus to main", async ({ page }) => {
   test.skip(isMobile(page), "keyboard test on desktop");
   await page.goto("/about");

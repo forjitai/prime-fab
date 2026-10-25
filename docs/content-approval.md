@@ -55,3 +55,10 @@ Doors: sliding, casement, French, slide & fold, mosquito mesh.
 Delete any you don't make; add any missing.
 
 **Optional — shown only when supplied:** price per sq ft per type · photos per type · GST no. · year established · nature of business · contact person (`config/site.ts → profile`).
+
+## About page (R3) — `config/site.ts → profile` and `content/company.ts`
+
+Company profile table shows only verified rows (now: name, products, address, phone). Add any of these and they appear automatically, on About and in the homepage profile box:
+nature of business · year established · legal status · contact person · team size · service area · GST no. · payment modes.
+
+Optional sections, hidden until text/photos are supplied: Why choose us · Our team · Quality · Workshop & facilities photos · Clients (only with their permission).

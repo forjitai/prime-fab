@@ -85,7 +85,7 @@ export function ProductBlock({ item, priority = false }: { item: CatalogItem; pr
       </div>
 
       <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-line bg-section px-5 py-4 sm:px-7">
-        <p className="font-medium text-heading">Interested in this {item.name.replace(/^uPVC /, "").toLowerCase()}?</p>
+        <p className="font-medium text-heading">Interested in the {item.name}?</p>
         <QuoteButton
           product={item.name}
           variant="secondary"

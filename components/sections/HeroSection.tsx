@@ -4,6 +4,7 @@ import { home } from "@/content/home";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { QuoteButton } from "@/components/quote/QuoteButton";
+import { factsheetRows } from "@/components/about/CompanyFactsheet";
 
 /** Decorative blueprint grid. Purely visual. */
 function Blueprint() {
@@ -19,19 +20,12 @@ function Blueprint() {
   );
 }
 
-/** Business profile rows — only verified values; null rows are hidden. */
-function profileRows(): [string, string][] {
-  const p = site.profile;
-  const rows: [string, string | null][] = [
-    ["Products", "uPVC windows and doors"],
-    ["Nature of business", p.natureOfBusiness],
-    ["Established", p.established],
-    ["Location", `${site.address.locality}, ${site.address.region}`],
-    ["GST no.", p.gst],
-    ["Contact person", p.contactPerson],
-    ["Phone", site.contact.phoneDisplay],
-  ];
-  return rows.filter((r): r is [string, string] => Boolean(r[1]));
+/** Short version of the About-page factsheet: verified rows only. */
+function profileRows() {
+  const skip = new Set(["Business name", "Address", "Payment modes", "Service area"]);
+  const rows = factsheetRows().filter(([k]) => !skip.has(k));
+  rows.splice(1, 0, ["Location", `${site.address.locality}, ${site.address.region}`]);
+  return rows;
 }
 
 export function HeroSection() {
