@@ -15,6 +15,7 @@ export function EnquiryForm({
   compact = false,
   idPrefix = "enq",
   defaultType = "",
+  messagePlaceholder,
 }: {
   inquiryTypes?: string[];
   compact?: boolean;
@@ -22,6 +23,8 @@ export function EnquiryForm({
   idPrefix?: string;
   /** Pre-selects "Enquiry about" (e.g. from a product's Get Best Quote button). */
   defaultType?: string;
+  /** Example text shown in the empty requirement box. */
+  messagePlaceholder?: string;
 }) {
   const cols = compact ? "grid gap-4 sm:grid-cols-2" : "grid gap-5 sm:grid-cols-2";
   const [state, action, pending] = useActionState(submitEnquiry, initial);
@@ -100,7 +103,7 @@ export function EnquiryForm({
 
       <div>
         <label htmlFor={`${idPrefix}-message`} className="mb-1.5 block font-medium text-heading">Your requirement</label>
-        <textarea {...field("message")} rows={compact ? 3 : 5} required maxLength={2000} className={inputCls} />
+        <textarea {...field("message")} rows={compact ? 3 : 5} required maxLength={2000} placeholder={messagePlaceholder} className={inputCls} />
         {err("message")}
       </div>
 

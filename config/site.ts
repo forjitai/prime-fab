@@ -28,6 +28,7 @@ export const site = {
   contact: {
     phoneDisplay: "+91 88615 55722",
     phoneHref: `tel:+${phoneDigits}`,
+    smsHref: `sms:+${phoneDigits}`,
     whatsappDisplay: "+91 88615 57722",
     whatsappHref: `https://wa.me/${whatsappDigits}`,
     whatsappVerified: false,
@@ -43,6 +44,7 @@ export const site = {
     country: "IN",
     // Directions by Plus Code + locality; verified in Phase 6.
     directionsHref: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(addressLine)}`,
+    mapHref: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressLine)}`,
   },
 
   nav: [

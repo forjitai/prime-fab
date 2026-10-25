@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 import { catalog } from "@/content/catalog";
+import { contact } from "@/content/pages";
 import { EnquiryForm } from "@/components/forms/EnquiryForm";
 
 const EVENT = "primefab:open-quote";
@@ -47,7 +48,7 @@ export function QuoteDialog() {
         </button>
       </div>
       <div className="p-6">
-        <EnquiryForm key={nonce} idPrefix="quote" compact inquiryTypes={catalog.map((c) => c.name)} defaultType={product} />
+        <EnquiryForm key={nonce} idPrefix="quote" compact inquiryTypes={catalog.map((c) => c.name)} defaultType={product} messagePlaceholder={contact.messagePlaceholder} />
       </div>
     </dialog>
   );

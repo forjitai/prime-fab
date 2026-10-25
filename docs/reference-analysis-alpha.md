@@ -47,3 +47,13 @@ The reference is an **IndiaMART-hosted catalogue site**. Its value is the **stru
 | **R4** Contact & services | Quote guidance · SMS · map links · installation service (if confirmed) | Do you install? |
 
 Each phase: build → Playwright at phone/tablet/desktop → screenshots → push → Vercel status = success.
+
+## Status (25 Oct 2026)
+
+| Phase | Status |
+|---|---|
+| R1 Global | ✅ Deployed — top bar, product search, mobile Call/WhatsApp/Quote bar, share links |
+| R2 Products & photos | ✅ Deployed — "Yes, I'm interested", optional specs/brochure, product-grouped Photos |
+| R3 About & sidebar | ✅ Deployed — company profile table, optional sections, About enquiry form, sidebar contact box |
+| R4 Contact | ✅ Deployed — contact details table, SMS, View map / Get directions, quote guidance + example text |
+| R4 Installation service | ⏸ Waiting: client to confirm whether PRIME FAB installs |

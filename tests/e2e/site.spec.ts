@@ -281,6 +281,24 @@ test("product sidebar has a contact box on desktop", async ({ page }) => {
   await expect(page.getByRole("dialog", { name: "Get Best Quote" })).toBeVisible();
 });
 
+test("contact page: details table, SMS, map links and quote guidance", async ({ page }) => {
+  await page.goto("/contact");
+  const table = page.getByRole("table", { name: "Contact details" });
+  await expect(table).toContainText(site.address.full);
+  await expect(table.getByRole("link", { name: site.contact.phoneDisplay }).first()).toHaveAttribute("href", site.contact.phoneHref);
+  await expect(table.locator(`a[href="${site.contact.smsHref}"]`)).toHaveCount(1);
+  expect(site.contact.smsHref).toBe("sms:+918861555722");
+  const view = table.getByRole("link", { name: "View map" });
+  await expect(view).toHaveAttribute("href", /^https:\/\/www\.google\.com\/maps\/search\/\?api=1&query=387X%2BRM9/);
+  await expect(view).toHaveAttribute("target", "_blank");
+  await expect(table.getByRole("link", { name: "Get directions" })).toHaveAttribute("href", site.address.directionsHref);
+  await expect(page.getByText("For an accurate quote, tell us:")).toBeVisible();
+  await expect(page.locator("#contact-message")).toHaveAttribute("placeholder", /sliding windows/);
+  // Placeholder is a hint only, not a value — empty submit still fails
+  await page.getByRole("button", { name: "Send enquiry" }).click();
+  await expect(page.locator("#contact-message")).toHaveAttribute("aria-invalid", "true");
+});
+
 test("skip link is first keyboard stop and moves focus to main", async ({ page }) => {
   test.skip(isMobile(page), "keyboard test on desktop");
   await page.goto("/about");

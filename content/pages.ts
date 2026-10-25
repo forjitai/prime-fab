@@ -63,7 +63,16 @@ export const contact = {
   },
   title: "Contact PRIME FAB",
   intro: "Call or WhatsApp for the quickest reply, or send the form and we'll call you back.",
-  detailsTitle: "Phone, WhatsApp and address",
-  formTitle: "Send an enquiry",
+  detailsTitle: "Contact details",
+  formTitle: "Get the best quote",
+  // Reference: "To get best quotes describe your requirements in detail like…"
+  guidanceIntro: "For an accurate quote, tell us:",
+  guidance: [
+    "Which window or door type you need",
+    "Sizes of each opening (width × height), even rough ones",
+    "How many of each",
+    "Where the site is, and when you need them",
+  ],
+  messagePlaceholder: "e.g. 3 sliding windows about 5 ft × 4 ft and 1 sliding door for a balcony, needed next month",
   mapTitle: "Find us",
 } as const;
