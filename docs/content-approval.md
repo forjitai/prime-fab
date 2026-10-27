@@ -15,7 +15,7 @@ _Phase 3 · 24 Oct 2026. All homepage text lives in `content/home.ts`; lines tag
 
 1. **Products / services list** — `config/site.ts → offerings`. Homepage shows a pre-launch notice until filled.
 2. **Gallery photos** — 6 for the homepage preview (`public/images/gallery/`).
-3. **WhatsApp number** — brief has 88615 **57722**; phone is 88615 **55722**. Confirm.
+3. ~~WhatsApp number~~ — ✅ confirmed 27 Oct 2026: same as phone, +91 88615 55722.
 4. **Logo** — temporary text wordmark in use.
 
 ## Deliberately NOT on the homepage (no verified info)

@@ -104,7 +104,7 @@ test("call, WhatsApp and directions links are correct", async ({ page }) => {
   expect(await wa.count()).toBeGreaterThan(0);
   await expect(wa.first()).toHaveAttribute("target", "_blank");
   await expect(wa.first()).toHaveAttribute("rel", /noopener/);
-  expect(site.contact.whatsappHref).toMatch(/^https:\/\/wa\.me\/91\d{10}$/);
+  expect(site.contact.whatsappHref).toBe("https://wa.me/918861555722");
 
   const maps = page.getByRole("link", { name: "Get directions on Google Maps" }).first();
   const href = await maps.getAttribute("href");

@@ -11,7 +11,7 @@ _Phase 1 · 24 Oct 2026_
 | 3 | Homepage | Built & tested; copy awaiting approval (content-approval.md) | Offerings, photos, WhatsApp number |
 | 4 | Inner pages | Done: about, products, gallery, contact, privacy, 404. Product detail pages wait for confirmed offerings | Offerings, photos |
 | 5 | Photos & media | Not started | Your photos |
-| 6 | Contact details | Not started | Phone/WhatsApp mismatch (see below) |
+| 6 | Contact details | Done: phone and WhatsApp both +91 88615 55722 (confirmed 27 Oct) | Owner to check map pin on live site |
 | 7 | SEO | Basics live: metadata, canonical, robots.txt, sitemap.xml, Organization/WebSite JSON-LD | Business category, service area |
 | 8 | Performance & a11y | Done: all pages ≥ 90 mobile, 100 desktop (docs/lighthouse.md) | Re-check after photos |
 | 9 | Testing (Playwright) | Done: 46/46 pass (docs/test-report.md); 2 bugs fixed | Lightbox/map/form delivery after content |

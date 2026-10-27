@@ -6,9 +6,8 @@
 
 const phoneDigits = "918861555722"; // +91 88615 55722 (from client brief)
 
-// ⚠ UNVERIFIED: the brief gives a different number for WhatsApp
-// (…557722 vs …555722). Confirm with the client before launch.
-const whatsappDigits = "918861557722";
+// Confirmed by client 27 Oct 2026: WhatsApp is the same number as the phone.
+const whatsappDigits = phoneDigits;
 
 const addressLine = "387X+RM9, Yentiganahalli, Karnataka 562123, India";
 
@@ -29,9 +28,9 @@ export const site = {
     phoneDisplay: "+91 88615 55722",
     phoneHref: `tel:+${phoneDigits}`,
     smsHref: `sms:+${phoneDigits}`,
-    whatsappDisplay: "+91 88615 57722",
+    whatsappDisplay: "+91 88615 55722",
     whatsappHref: `https://wa.me/${whatsappDigits}`,
-    whatsappVerified: false,
+    whatsappVerified: true,
     email: null as string | null, // not provided — do not invent
   },
 
