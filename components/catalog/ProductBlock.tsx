@@ -35,12 +35,15 @@ export function ProductBlock({ item, priority = false }: { item: CatalogItem; pr
 
       <div className="grid gap-6 p-5 sm:p-7 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-8">
         <div>
-          <ImageFrame src={main} alt={item.name} ratio="4/3" priority={priority} sizes="(min-width:768px) 40vw, 100vw" />
-          <div className="mt-3 grid grid-cols-3 gap-3">
-            {[0, 1, 2].map((n) => (
-              <ImageFrame key={n} src={thumbs[n]} alt={`${item.name} photo ${n + 2}`} ratio="1/1" sizes="12vw" />
-            ))}
-          </div>
+          <ImageFrame src={main} alt={item.name} ratio="4/3" fit="contain" priority={priority} sizes="(min-width:768px) 40vw, 100vw" />
+          {/* Extra photos only when supplied — no empty slots */}
+          {thumbs.length > 0 && (
+            <div className="mt-3 grid grid-cols-3 gap-3">
+              {thumbs.slice(0, 3).map((src, n) => (
+                <ImageFrame key={src} src={src} alt={`${item.name} photo ${n + 2}`} ratio="1/1" fit="contain" sizes="12vw" />
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="flex flex-col">

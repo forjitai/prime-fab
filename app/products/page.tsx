@@ -37,10 +37,10 @@ export default function ProductsPage() {
                   </Link>
                 </div>
                 <ul className="grid grid-cols-2 gap-4 md:grid-cols-3">
-                  {itemsIn(c.slug).map((i) => (
+                  {itemsIn(c.slug).map((i, k) => (
                     <li key={i.slug} className="flex flex-col border border-line bg-card">
                       <Link href={`/products/${c.slug}#${i.slug}`} className="group block">
-                        <ImageFrame src={i.images?.[0]} alt={i.name} ratio="4/3" sizes="(min-width:768px) 25vw, 50vw" />
+                        <ImageFrame src={i.images?.[0]} alt="" fit="contain" priority={c.slug === categories[0].slug && k < 2} ratio="4/3" sizes="(min-width:768px) 25vw, 50vw" />
                         <h3 className="px-4 pt-3 font-bold leading-snug text-heading group-hover:underline">{i.name}</h3>
                       </Link>
                       <p className="t-caption px-4 pt-1">{i.price ?? "Price on request"}</p>

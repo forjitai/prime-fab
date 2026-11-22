@@ -28,8 +28,16 @@ test.describe("every page", () => {
       expect(await page.locator('link[rel="canonical"]').getAttribute("href")).toMatch(new RegExp(`${path === "/" ? "" : path}$`));
       // No horizontal scroll
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-      // No broken images
-      expect(await page.evaluate(() => [...document.images].filter((i) => !i.complete || i.naturalWidth === 0).length)).toBe(0);
+      // No broken images: bring each visible image into view, wait for it, then it must have pixels
+      const imgs = page.locator("img");
+      for (let n = 0; n < (await imgs.count()); n++) {
+        const img = imgs.nth(n);
+        if (!(await img.isVisible())) continue;
+        await img.scrollIntoViewIfNeeded();
+        await expect
+          .poll(() => img.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0), { timeout: 10_000 })
+          .toBe(true);
+      }
       // Never shows reference-site branding
       expect(await page.locator("body").innerText()).not.toMatch(/simta/i);
       // JSON-LD parses
@@ -196,7 +204,7 @@ test("Yes, I'm interested opens the quote dialog for that product", async ({ pag
 
 test("photos page groups every product with a quote button", async ({ page }) => {
   await page.goto("/gallery");
-  for (const heading of ["uPVC Windows", "uPVC Doors", "Project photos"])
+  for (const heading of ["uPVC Windows", "uPVC Doors", "All photos"])
     await expect(page.getByRole("heading", { level: 2, name: heading })).toBeVisible();
   for (const item of catalog) {
     const tile = page.locator("li", { has: page.getByRole("heading", { level: 3, name: item.name, exact: true }) });
@@ -204,6 +212,43 @@ test("photos page groups every product with a quote button", async ({ page }) =>
     await expect(tile.getByRole("link")).toHaveAttribute("href", `/products/${item.category}#${item.slug}`);
     await expect(tile.getByRole("button", { name: "Get Quote" })).toBeVisible();
   }
+});
+
+test("every product shows its photo, and it loads", async ({ page }) => {
+  expect(catalog.length).toBe(10);
+  for (const item of catalog) expect(item.images?.[0], item.name).toBeTruthy();
+  for (const cat of ["upvc-windows", "upvc-doors"]) {
+    await page.goto(`/products/${cat}`, { waitUntil: "networkidle" });
+    for (const item of catalog.filter((c) => c.category === cat)) {
+      const img = page.locator(`article#${item.slug} img[alt="${item.name}"]`);
+      await img.scrollIntoViewIfNeeded();
+      await expect(img).toBeVisible();
+      expect(await img.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0), item.name).toBe(true);
+      // No empty "Photo needed" slots inside product blocks
+      await expect(page.locator(`article#${item.slug}`).getByText("Photo needed")).toHaveCount(0);
+    }
+  }
+});
+
+test("unconfirmed door types are not shown", async ({ page }) => {
+  await page.goto("/products/upvc-doors");
+  for (const name of ["uPVC Slide and Fold Door", "uPVC Mosquito Mesh Door"])
+    await expect(page.getByRole("heading", { name, exact: true })).toHaveCount(0);
+});
+
+test("photo viewer opens, steps with arrows and closes", async ({ page }) => {
+  await page.goto("/gallery", { waitUntil: "networkidle" });
+  const first = catalog[0];
+  await page.getByRole("button", { name: `Enlarge photo: ${first.name}`, exact: true }).click();
+  const viewer = page.getByRole("dialog", { name: "Photo viewer" });
+  await expect(viewer).toBeVisible();
+  await expect(viewer.locator("figcaption")).toHaveText(first.name);
+  await page.keyboard.press("ArrowRight");
+  await expect(viewer.locator("figcaption")).toHaveText(catalog[1].name);
+  await viewer.getByRole("button", { name: "Previous photo" }).click();
+  await expect(viewer.locator("figcaption")).toHaveText(first.name);
+  await page.keyboard.press("Escape");
+  await expect(viewer).toBeHidden();
 });
 
 test("sidebar and quick links jump to the right product", async ({ page }) => {

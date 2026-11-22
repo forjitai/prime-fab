@@ -14,7 +14,7 @@ _Phase 3 · 24 Oct 2026. All homepage text lives in `content/home.ts`; lines tag
 ## Blocked items (cannot launch without)
 
 1. **Products / services list** — `config/site.ts → offerings`. Homepage shows a pre-launch notice until filled.
-2. **Gallery photos** — 6 for the homepage preview (`public/images/gallery/`).
+2. ~~Gallery photos~~ — ✅ 10 product photos supplied by owner 22 Nov 2026 (product pages, Photos, homepage). Finished-job photos still welcome.
 3. ~~WhatsApp number~~ — ✅ confirmed 27 Oct 2026: same as phone, +91 88615 55722.
 4. **Logo** — temporary text wordmark in use.
 
@@ -62,3 +62,13 @@ Company profile table shows only verified rows (now: name, products, address, ph
 nature of business · year established · legal status · contact person · team size · service area · GST no. · payment modes.
 
 Optional sections, hidden until text/photos are supplied: Why choose us · Our team · Quality · Workshop & facilities photos · Clients (only with their permission).
+
+## Products confirmed by owner — 22 Nov 2026
+
+Owner sent captioned photos for 10 types; these are now the only types shown:
+- **Windows (7):** sliding, sliding with mosquito mesh, casement, fixed, tilt & turn, top hung, ventilator
+- **Doors (3):** sliding, casement, French
+
+**Hidden** until the owner confirms PRIME FAB makes them: uPVC slide & fold door, uPVC mosquito mesh door (still in `content/catalog.ts`, `confirmed: false`).
+
+**Check with owner:** the photo captioned "uPVC Casement door" shows wood-finish panels that look like a sliding door. Confirm it's the right photo.

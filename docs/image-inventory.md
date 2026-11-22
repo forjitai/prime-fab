@@ -1,31 +1,24 @@
 # Image Inventory
 
-_Phase 1 · 24 Oct 2026_
+_Updated 22 Nov 2026_
 
-## Reference-site media observed
+| Page / section | File | Size (WebP) | Ratio shown | Source | Alt text |
+|---|---|---|---|---|---|
+| Product: uPVC Sliding Window (+ Windows category card) | `public/images/products/upvc-sliding-window.webp` | 972×811 | 4:3 contain | Owner, WhatsApp 22 Nov 2026 | uPVC Sliding Window |
+| Product: uPVC Sliding Window with Mosquito Mesh | `upvc-sliding-window-with-mesh.webp` | 720×720 | 4:3 contain | Owner | uPVC Sliding Window with Mosquito Mesh |
+| Product: uPVC Casement Window | `upvc-casement-window.webp` | 876×989 | 4:3 contain | Owner | uPVC Casement Window |
+| Product: uPVC Fixed Window | `upvc-fixed-window.webp` | 1400×1074 | 4:3 contain | Owner | uPVC Fixed Window |
+| Product: uPVC Tilt and Turn Window | `upvc-tilt-and-turn-window.webp` | 500×500 | 4:3 contain | Owner | uPVC Tilt and Turn Window |
+| Product: uPVC Top Hung Window | `upvc-top-hung-window.webp` | 376×500 (low-res) | 4:3 contain | Owner | uPVC Top Hung Window |
+| Product: uPVC Ventilator | `upvc-ventilator-window.webp` | 686×689 | 4:3 contain | Owner | uPVC Ventilator |
+| Product: uPVC Sliding Door (+ Doors category card) | `upvc-sliding-door.webp` | 1024×726 | 4:3 contain | Owner | uPVC Sliding Door |
+| Product: uPVC Casement Door | `upvc-casement-door.webp` | 500×500 | 4:3 contain | Owner | uPVC Casement Door |
+| Product: uPVC French Door | `upvc-french-door.webp` | 536×1040 | 4:3 contain | Owner | uPVC French Door |
+| Logo mark / favicon | `public/logo-mark.svg`, `app/icon.svg`, `app/apple-icon.png` | vector | — | Traced from owner's logo | (decorative; wordmark is text) |
 
-| Asset | Where | Use on PRIME FAB? |
-|---|---|---|
-| `/media/hero-poster-v4.webp` | Homepage hero (video poster) | **No** — not authorised |
-| `/logo.webp` | Header | **No** — SIMTA trademark |
-| `/og-default.webp` (1200×630) | Social share image | **No** |
+The same 10 photos also fill the Photos page, the homepage photo preview and the Products overview tiles. Tile images use empty alt text because each tile's heading already names the product.
 
-No reference media will be copied or hotlinked.
+Processing: EXIF orientation applied, metadata stripped, longest side ≤ 1400 px, WebP q80 (408 KB for all 10). Next.js serves resized WebP per screen size; first row of tiles and the first product block load with priority, the rest lazy-load. Archive copies: `brand/client-photos/`.
 
-## Images PRIME FAB will need (draft — finalised once offerings are confirmed)
-
-| Page | Section | Proposed file | Ratio | Source status |
-|---|---|---|---|---|
-| All | Header/footer logo | `logo.svg` | — | **Needed from you** (or I design a wordmark) |
-| All | Favicon / app icon | `icon.png` | 1:1 | Derived from logo |
-| All | Social share image | `og-default.jpg` | 1200×630 | Generated from brand |
-| Home | Hero | `hero-workshop.webp` | 16:9 desktop / 4:5 mobile crop | **Your workshop/work photo preferred**; licensed stock fallback |
-| Home | Offering cards (×3–6) | `product-<slug>.webp` | 4:3 | Your photos per confirmed offering |
-| Home | Why-us / process | icons (Lucide) | — | No photos needed |
-| Home | Gallery preview (×6) | `project-01…06.webp` | 1:1 or 4:3 | **Your completed-job photos** |
-| About | Team / workshop | `about-workshop.webp` | 3:2 | Your photo |
-| Products/[slug] | Header + 3–6 detail shots | `<slug>-*.webp` | 4:3 | Your photos |
-| Gallery | All project photos | `project-*.webp` | mixed | Your photos |
-| Contact | Location/storefront | `contact-location.webp` | 3:2 | Optional |
-
-Full columns (dimensions, licence, alt text) get filled in Phase 5 when files exist.
+## Still placeholders
+- About page workshop photo (`components` → About page `ImageFrame`) — needs a real workshop/team photo.

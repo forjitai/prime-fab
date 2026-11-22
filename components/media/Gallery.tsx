@@ -8,13 +8,15 @@ import { ImageFrame } from "./ImageFrame";
 export type GalleryItem = { src?: string; alt: string; caption?: string };
 
 /** Grid of photos that opens a keyboard-accessible lightbox (native <dialog>). */
-export function Gallery({ items }: { items: GalleryItem[] }) {
+export function Gallery({ items, fit = "cover" }: { items: GalleryItem[]; fit?: "cover" | "contain" }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false); // viewer image is only rendered while open
   const viewable = items.filter((i) => i.src);
 
   const open = (i: number) => {
     setIndex(i);
+    setIsOpen(true);
     dialogRef.current?.showModal();
   };
   const step = useCallback(
@@ -47,7 +49,7 @@ export function Gallery({ items }: { items: GalleryItem[] }) {
                 className="block w-full"
                 aria-label={`Enlarge photo: ${item.alt}`}
               >
-                <ImageFrame src={item.src} alt={item.alt} ratio="1/1" sizes="(min-width:1024px) 33vw, 50vw" />
+                <ImageFrame src={item.src} alt={item.alt} ratio="1/1" fit={fit} sizes="(min-width:1024px) 33vw, 50vw" />
               </button>
             ) : (
               <ImageFrame alt={item.alt} ratio="1/1" />
@@ -61,8 +63,9 @@ export function Gallery({ items }: { items: GalleryItem[] }) {
         aria-label="Photo viewer"
         className="m-auto h-full max-h-none w-full max-w-none bg-black/95 p-0 text-white backdrop:bg-black/80"
         onClick={(e) => e.target === dialogRef.current && dialogRef.current?.close()}
+        onClose={() => setIsOpen(false)}
       >
-        {current?.src && (
+        {isOpen && current?.src && (
           <figure className="flex h-full flex-col items-center justify-center p-4 sm:p-12">
             <div className="relative h-full w-full">
               <Image src={current.src} alt={current.alt} fill sizes="100vw" className="object-contain" />

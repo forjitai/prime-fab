@@ -66,8 +66,8 @@ export const site = {
    * The individual window/door types live in content/catalog.ts.
    */
   offerings: [
-    { slug: "upvc-windows", title: "uPVC Windows", summary: "Sliding, casement, fixed, tilt and turn, top hung, ventilators and mesh windows.", image: undefined },
-    { slug: "upvc-doors", title: "uPVC Doors", summary: "Sliding, casement, French, slide and fold and mosquito mesh doors.", image: undefined },
+    { slug: "upvc-windows", title: "uPVC Windows", summary: "Sliding, casement, fixed, tilt and turn, top hung, ventilators and mesh windows.", image: "/images/products/upvc-sliding-window.webp" },
+    { slug: "upvc-doors", title: "uPVC Doors", summary: "Sliding, casement and French doors.", image: "/images/products/upvc-sliding-door.webp" },
   ] as { slug: string; title: string; summary: string; image?: string }[],
 
   /**

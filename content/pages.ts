@@ -3,6 +3,8 @@
  * (listed in docs/content-approval.md). No invented facts.
  */
 
+import { catalog } from "./catalog";
+
 export const about = {
   meta: {
     title: "About PRIME FAB",
@@ -46,8 +48,9 @@ export const gallery = {
   },
   title: "Photo gallery",
   intro: "uPVC windows and doors made by PRIME FAB.", // PROPOSED
-  // Add photos to public/images/gallery and list them here: { src, alt, caption? }
-  items: Array.from({ length: 9 }, (_, i) => ({ alt: `PRIME FAB project photo ${i + 1}` })) as {
+  // Owner-supplied product photos (22 Nov 2026). Add finished-job photos here later
+  // as { src: "/images/gallery/<name>.webp", alt, caption }.
+  items: catalog.map((i) => ({ src: i.images?.[0], alt: i.name, caption: i.name })) as {
     src?: string;
     alt: string;
     caption?: string;

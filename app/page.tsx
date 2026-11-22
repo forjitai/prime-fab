@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { site } from "@/config/site";
 import { home } from "@/content/home";
+import { gallery } from "@/content/pages";
 import { catalog, categories, itemsIn, itemHref } from "@/content/catalog";
 import { Container, Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -24,8 +25,8 @@ export const metadata: Metadata = {
   openGraph: { title: home.meta.title, description: home.meta.description, url: "/" },
 };
 
-// Gallery preview: add real files under public/images/gallery and list them here.
-const galleryPreview = Array.from({ length: 6 }, (_, i) => ({ alt: `PRIME FAB project photo ${i + 1}` }));
+// Homepage preview: first six photos from the Photos page.
+const galleryPreview = gallery.items.slice(0, 6);
 
 export default function HomePage() {
   return (
@@ -67,7 +68,7 @@ export default function HomePage() {
                 {itemsIn(c.slug).map((i) => (
                   <li key={i.slug} className="flex flex-col border border-line bg-card">
                     <Link href={itemHref(i)} className="group block">
-                      <ImageFrame src={i.images?.[0]} alt={i.name} ratio="4/3" sizes="(min-width:1024px) 22vw, 50vw" />
+                      <ImageFrame src={i.images?.[0]} alt="" fit="contain" ratio="4/3" sizes="(min-width:1024px) 22vw, 50vw" />
                       <h4 className="px-4 pt-3 font-bold leading-snug text-heading group-hover:underline">{i.name}</h4>
                     </Link>
                     <p className="t-caption px-4 pt-1">{i.price ?? "Price on request"}</p>
@@ -112,7 +113,7 @@ export default function HomePage() {
             {home.gallery.cta}
           </ButtonLink>
         </div>
-        <Gallery items={galleryPreview} />
+        <Gallery items={galleryPreview} fit="contain" />
       </Section>
 
       {/* Contact */}

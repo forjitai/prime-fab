@@ -31,10 +31,10 @@ export default function GalleryPage() {
         <Section key={c.slug} tone={n % 2 ? "light" : "alt"} labelledBy={`photos-${c.slug}`}>
           <SectionHeading id={`photos-${c.slug}`} title={c.name} />
           <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-            {itemsIn(c.slug).map((i) => (
+            {itemsIn(c.slug).map((i, k) => (
               <li key={i.slug} className="flex flex-col border border-line bg-card">
                 <Link href={itemHref(i)} className="group block">
-                  <ImageFrame src={i.images?.[0]} alt={i.name} ratio="1/1" sizes="(min-width:1024px) 22vw, 50vw" />
+                  <ImageFrame src={i.images?.[0]} alt="" fit="contain" priority={n === 0 && k < 2} ratio="1/1" sizes="(min-width:1024px) 22vw, 50vw" />
                   <h3 className="px-4 pt-3 font-bold leading-snug text-heading group-hover:underline">{i.name}</h3>
                 </Link>
                 <p className="t-caption px-4 pt-1">{i.price ?? "Price on request"}</p>
@@ -50,8 +50,8 @@ export default function GalleryPage() {
       ))}
 
       <Section labelledBy="project-photos">
-        <SectionHeading id="project-photos" title="Project photos" intro="Finished jobs and work in progress." />
-        <Gallery items={gallery.items} />
+        <SectionHeading id="project-photos" title="All photos" intro="Tap a photo to see it full size." />
+        <Gallery items={gallery.items} fit="contain" />
       </Section>
 
       <CTASection title={gallery.cta.title} text={gallery.cta.text} />

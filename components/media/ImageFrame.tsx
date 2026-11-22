@@ -15,6 +15,7 @@ export function ImageFrame({
   priority = false,
   position = "center",
   chamfer = false,
+  fit = "cover",
   className = "",
 }: {
   src?: string;
@@ -24,11 +25,13 @@ export function ImageFrame({
   priority?: boolean;
   position?: string;
   chamfer?: boolean;
+  /** "contain" shows the whole photo (product shots); "cover" fills the box. */
+  fit?: "cover" | "contain";
   className?: string;
 }) {
   return (
     <div
-      className={`relative overflow-hidden bg-section ${chamfer ? "chamfer-lg" : ""} ${className}`}
+      className={`relative overflow-hidden ${src && fit === "contain" ? "bg-card" : "bg-section"} ${chamfer ? "chamfer-lg" : ""} ${className}`}
       style={{ aspectRatio: ratio }}
     >
       {src ? (
@@ -38,7 +41,7 @@ export function ImageFrame({
           fill
           sizes={sizes}
           priority={priority}
-          className="object-cover"
+          className={fit === "contain" ? "object-contain" : "object-cover"}
           style={{ objectPosition: position }}
         />
       ) : (

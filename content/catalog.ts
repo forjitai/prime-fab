@@ -2,9 +2,11 @@
  * PRIME FAB product catalogue — the single list behind every product page,
  * the sidebar, the homepage grid, the quick links and the quote form.
  *
- * ⚠ TO CONFIRM WITH CLIENT: client confirmed "uPVC windows and doors only" but has
- * not yet said WHICH types. These are the common uPVC types sold in India. Delete
- * any PRIME FAB doesn't make, add any missing, and set `confirmed: true`.
+ * Owner confirmed these 10 types with photos on WhatsApp (22 Nov 2026): 7 windows
+ * (sliding, sliding with mesh, casement, fixed, tilt & turn, top hung, ventilator) and
+ * 3 doors (sliding, casement, French). Photos: public/images/products, originals in
+ * brand/client-photos. ONLY `confirmed: true` items are shown on the site; the two
+ * unconfirmed door types below stay hidden until the owner says PRIME FAB makes them.
  *
  * Descriptions explain what each TYPE is (how it opens, where it's used) — they are
  * general facts, not PRIME FAB claims. No prices, specs, brands or warranties until supplied.
@@ -46,7 +48,7 @@ export const categories: { slug: CategorySlug; name: string; singular: string; i
   },
 ];
 
-export const catalog: CatalogItem[] = [
+const allItems: CatalogItem[] = [
   // ---- Windows ----
   {
     slug: "upvc-sliding-window",
@@ -55,7 +57,8 @@ export const catalog: CatalogItem[] = [
     openingStyle: "Sliding (2 or 3 track)",
     description: "Glass panels slide sideways on tracks, so the window opens without swinging into the room or outside.",
     usedFor: "Bedrooms, living rooms and balconies where space is tight",
-    confirmed: false,
+    images: ["/images/products/upvc-sliding-window.webp"],
+    confirmed: true,
   },
   {
     slug: "upvc-casement-window",
@@ -64,7 +67,8 @@ export const catalog: CatalogItem[] = [
     openingStyle: "Side-hinged, opens outward or inward",
     description: "Hinged at the side and opens fully like a door, letting in the most air of any window type.",
     usedFor: "Rooms that need good ventilation",
-    confirmed: false,
+    images: ["/images/products/upvc-casement-window.webp"],
+    confirmed: true,
   },
   {
     slug: "upvc-fixed-window",
@@ -73,7 +77,8 @@ export const catalog: CatalogItem[] = [
     openingStyle: "Does not open",
     description: "A frame with fixed glass for light and view only. Often combined with opening sections.",
     usedFor: "Staircases, large glazed walls, above doors",
-    confirmed: false,
+    images: ["/images/products/upvc-fixed-window.webp"],
+    confirmed: true,
   },
   {
     slug: "upvc-tilt-and-turn-window",
@@ -82,7 +87,8 @@ export const catalog: CatalogItem[] = [
     openingStyle: "Tilts in at the top, or swings in from the side",
     description: "One handle switches between tilting open for ventilation and swinging fully open for cleaning.",
     usedFor: "Apartments and upper floors",
-    confirmed: false,
+    images: ["/images/products/upvc-tilt-and-turn-window.webp"],
+    confirmed: true,
   },
   {
     slug: "upvc-top-hung-window",
@@ -91,7 +97,8 @@ export const catalog: CatalogItem[] = [
     openingStyle: "Hinged at the top, opens outward",
     description: "Opens outward from the bottom, so it can stay open for air even when it's raining lightly.",
     usedFor: "Kitchens and small openings",
-    confirmed: false,
+    images: ["/images/products/upvc-top-hung-window.webp"],
+    confirmed: true,
   },
   {
     slug: "upvc-ventilator-window",
@@ -100,7 +107,8 @@ export const catalog: CatalogItem[] = [
     openingStyle: "Small top-hung or louvre opening",
     description: "A small window for steady airflow and privacy, often with frosted glass and an exhaust fan cut-out.",
     usedFor: "Bathrooms and toilets",
-    confirmed: false,
+    images: ["/images/products/upvc-ventilator-window.webp"],
+    confirmed: true,
   },
   {
     slug: "upvc-sliding-window-with-mesh",
@@ -109,7 +117,8 @@ export const catalog: CatalogItem[] = [
     openingStyle: "Sliding, with a separate mesh shutter",
     description: "A sliding window with an extra track for a mosquito mesh shutter, so you can keep the glass open and insects out.",
     usedFor: "Bedrooms and any room kept open for air",
-    confirmed: false,
+    images: ["/images/products/upvc-sliding-window-with-mesh.webp"],
+    confirmed: true,
   },
   // ---- Doors ----
   {
@@ -119,7 +128,8 @@ export const catalog: CatalogItem[] = [
     openingStyle: "Sliding (2 or 3 track)",
     description: "Large glass panels slide sideways, giving a wide opening without a door swinging into the room.",
     usedFor: "Balconies, terraces and living rooms",
-    confirmed: false,
+    images: ["/images/products/upvc-sliding-door.webp"],
+    confirmed: true,
   },
   {
     slug: "upvc-casement-door",
@@ -128,16 +138,18 @@ export const catalog: CatalogItem[] = [
     openingStyle: "Hinged, single or double leaf",
     description: "A hinged door that swings open like a regular door, available with full glass or part panel.",
     usedFor: "Balconies, utility areas and side entrances",
-    confirmed: false,
+    images: ["/images/products/upvc-casement-door.webp"],
+    confirmed: true,
   },
   {
     slug: "upvc-french-door",
     name: "uPVC French Door",
     category: "upvc-doors",
-    openingStyle: "Two hinged leaves opening from the centre",
-    description: "A pair of glazed doors that open from the middle with no central post, for a wide, open look.",
+    openingStyle: "Hinged, single or double leaf",
+    description: "A hinged door with large glass panes, often divided by a decorative grid, that lets plenty of light into the room.",
     usedFor: "Living rooms opening onto gardens or balconies",
-    confirmed: false,
+    images: ["/images/products/upvc-french-door.webp"],
+    confirmed: true,
   },
   {
     slug: "upvc-slide-and-fold-door",
@@ -158,6 +170,9 @@ export const catalog: CatalogItem[] = [
     confirmed: false,
   },
 ];
+
+/** Everything the site shows: confirmed types only. */
+export const catalog = allItems.filter((i) => i.confirmed);
 
 export const itemsIn = (c: CategorySlug) => catalog.filter((i) => i.category === c);
 export const categoryOf = (c: CategorySlug) => categories.find((x) => x.slug === c)!;
